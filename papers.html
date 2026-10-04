@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Past papers</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗂️</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,800&family=Caveat:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+  --desk:#E6ECF4;--paper:#FDFEFF;--grid:#DCE5F1;--line:#C6D1E1;--margin:#E59AA2;--ink:#1D3A8A;--text:#22252B;--muted:#576072;--red:#C81E2B;--focus:#F2A900;
+  --maths:#A87400;--english:#C2185B;--biology:#2E8B57;--chemistry:#7A3FA8;--physics:#2F5DB8;--history:#A0522D;--geography:#0E7C86}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--desk:#0E1320;--paper:#1A2134;--grid:#222B42;--line:#2F3A56;--margin:#7A3A44;--ink:#AFC2FF;--text:#E6E9F0;--muted:#9CA5B8;--red:#FF7B7B;
+  --maths:#E0B84A;--english:#F06292;--biology:#5FC08A;--chemistry:#B386DB;--physics:#6E93E6;--history:#E0956A;--geography:#4FC3CC}}
+:root[data-theme="dark"]{--desk:#0E1320;--paper:#1A2134;--grid:#222B42;--line:#2F3A56;--margin:#7A3A44;--ink:#AFC2FF;--text:#E6E9F0;--muted:#9CA5B8;--red:#FF7B7B;
+  --maths:#E0B84A;--english:#F06292;--biology:#5FC08A;--chemistry:#B386DB;--physics:#6E93E6;--history:#E0956A;--geography:#4FC3CC}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--desk);color:var(--text);font:400 1.0625rem/1.6 "Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",sans-serif}
+.wrap{max-width:52rem;margin:0 auto;padding:2.5rem 1.25rem 4rem}
+.back{color:var(--ink);font-weight:700}
+h1{font:800 clamp(2.2rem,7vw,3.6rem)/1 "Bricolage Grotesque",system-ui,sans-serif;letter-spacing:-.025em;color:var(--ink);margin:.75rem 0 .8rem}
+.intro{color:var(--muted);max-width:38rem;margin:0 0 1rem}
+.how{max-width:40rem;margin:0 0 2rem;padding-left:1.2rem}
+.how li{margin:.2rem 0}
+section.subj{position:relative;background-color:var(--paper);background-image:linear-gradient(var(--grid) 1px,transparent 1px);background-size:100% 30px;
+  border-radius:.3rem .6rem .6rem .3rem;border-left:14px solid var(--c);padding:1.4rem 1.4rem 1.5rem 2.6rem;margin:0 0 1.25rem}
+section.subj::before{content:"";position:absolute;top:0;bottom:0;left:1.5rem;width:2px;background:var(--margin)}
+.head{display:flex;flex-wrap:wrap;gap:.5rem 1rem;align-items:baseline;justify-content:space-between}
+h2{font:800 1.5rem/1.15 "Bricolage Grotesque",system-ui,sans-serif;color:var(--ink);margin:0}
+a.official{font-weight:700;color:var(--ink)}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+.code{color:var(--muted);margin:.2rem 0 .8rem}
+.paper{border-top:1px dashed var(--line);padding:.7rem 0}
+.prow{display:flex;flex-wrap:wrap;gap:.25rem 1rem;align-items:baseline}
+.prow b{min-width:7.5rem}
+.prow span{color:var(--muted)}
+details{margin-top:.35rem}
+summary{cursor:pointer;color:var(--ink);font-size:.95rem;width:fit-content}
+.log{display:flex;flex-wrap:wrap;gap:.5rem;align-items:end;margin:.6rem 0 .3rem}
+.log label{display:flex;flex-direction:column;font-size:.85rem;color:var(--muted)}
+.log input{font:inherit;color:var(--ink);background:transparent;border:0;border-bottom:2px solid var(--ink);padding:.2rem .1rem;width:9rem;border-radius:0}
+.log input.n{width:5rem}
+.btn{font:800 .95rem "Bricolage Grotesque",system-ui,sans-serif;padding:.5rem 1rem;border-radius:.45rem;border:2px solid var(--ink);background:var(--ink);color:var(--paper);cursor:pointer}
+.x{appearance:none;border:0;background:none;color:var(--muted);cursor:pointer;font:inherit;text-decoration:underline;padding:0 .2rem}
+ul.attempts{list-style:none;margin:.3rem 0 0;padding:0}
+ul.attempts li{display:flex;gap:.75rem;align-items:baseline;flex-wrap:wrap}
+.pct{font-family:Caveat,cursive;color:var(--red);font-size:1.45rem;line-height:1}
+.err{color:var(--red);font-size:.9rem;margin:.2rem 0 0}
+.foot{margin-top:2rem;color:var(--muted);font-size:.9rem;max-width:42rem}
+@media (max-width:600px){.wrap{padding:1.75rem .75rem 3rem}section.subj{padding:1.2rem 1rem 1.3rem 2.2rem}section.subj::before{left:1.15rem}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="index.html">Back to GCSE revision</a>
+  <h1>Past papers</h1>
+  <p class="intro">Official AQA question papers and mark schemes are free on AQA's website. Each link below opens the subject's page; look for assessment resources, then question papers and mark schemes. AQA keeps most papers online for about three years, and the very latest series may not be public yet.</p>
+  <ol class="how">
+    <li>Sit the paper in one go, timed, with nothing open but what's allowed in the exam.</li>
+    <li>Mark it honestly with the official mark scheme.</li>
+    <li>Log your mark below and note the topics where you lost marks, then revise those in the notes.</li>
+  </ol>
+  <div id="list"></div>
+  <p class="foot">Links go to AQA's own website, which is the only place to download the papers. This site doesn't host or copy AQA material. Your logged marks are saved in this browser only.</p>
+</div>
+<script>
+const SUBJ = [
+ {k:"maths",name:"Maths (Higher)",code:"8300",note:"Choose the Higher tier papers.",papers:[["Paper 1","Non-calculator. 1 hour 30 minutes, 80 marks"],["Paper 2","Calculator. 1 hour 30 minutes, 80 marks"],["Paper 3","Calculator. 1 hour 30 minutes, 80 marks"]]},
+ {k:"english",name:"English Language",code:"8700",papers:[["Paper 1","Creative reading and writing. 1 hour 45 minutes, 80 marks"],["Paper 2","Viewpoints and perspectives. 1 hour 45 minutes, 80 marks"]]},
+ {k:"english",name:"English Literature",code:"8702",note:"Only answer the questions on your set texts.",papers:[["Paper 1","Shakespeare and the 19th-century novel. 1 hour 45 minutes, 64 marks"],["Paper 2","Modern texts and poetry. 2 hours 15 minutes, 96 marks"]]},
+ {k:"biology",name:"Biology",code:"8461",note:"Choose the Higher tier papers if you're sitting Higher.",papers:[["Paper 1","Topics 1–4. 1 hour 45 minutes, 100 marks"],["Paper 2","Topics 5–7. 1 hour 45 minutes, 100 marks"]]},
+ {k:"chemistry",name:"Chemistry",code:"8462",note:"Choose the Higher tier papers if you're sitting Higher.",papers:[["Paper 1","Topics 1–5. 1 hour 45 minutes, 100 marks"],["Paper 2","Topics 6–10. 1 hour 45 minutes, 100 marks"]]},
+ {k:"physics",name:"Physics",code:"8463",note:"Choose the Higher tier papers if you're sitting Higher.",papers:[["Paper 1","Topics 1–4. 1 hour 45 minutes, 100 marks"],["Paper 2","Topics 5–8. 1 hour 45 minutes, 100 marks"]]},
+ {k:"history",name:"History",code:"8145",note:"Papers are split by option, so download the ones for your school's options.",papers:[["Paper 1","Understanding the modern world. 2 hours"],["Paper 2","Shaping the nation. 2 hours"]]},
+ {k:"geography",name:"Geography",code:"8035",note:"Paper 3 changes each year with the pre-release resources booklet.",papers:[["Paper 1","Living with the physical environment. 1 hour 30 minutes"],["Paper 2","Challenges in the human environment. 1 hour 30 minutes"],["Paper 3","Geographical applications. 1 hour 15 minutes"]]}
+];
+const KEY="gcse-pastpapers-v1";
+let log; try{log=JSON.parse(localStorage.getItem(KEY))||{}}catch(e){log={}}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(log))}catch(e){}};
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+
+function attemptsHTML(id){
+  const a=log[id]||[];
+  if(!a.length) return '<li style="color:var(--muted)">No attempts logged yet.</li>';
+  return a.map((t,i)=>`<li><span>${esc(t.s)}: ${t.m}/${t.o}</span><span class="pct">${Math.round(t.m/t.o*100)}%</span><button class="x" type="button" data-del="${id}|${i}">Remove</button></li>`).join("");
+}
+function render(){
+  document.getElementById("list").innerHTML = SUBJ.map(s=>`
+    <section class="subj" style="--c:var(--${s.k})" aria-labelledby="h-${s.code}">
+      <div class="head"><h2 id="h-${s.code}">${s.name}</h2><a class="official" href="https://www.aqa.org.uk/${s.code}" target="_blank" rel="noopener">AQA ${s.code} papers and mark schemes<span style="position:absolute;left:-9999px"> (opens AQA's website)</span></a></div>
+      <p class="code">${s.note||""}</p>
+      ${s.papers.map((p,pi)=>{const id=s.code+"-"+pi; return `
+        <div class="paper">
+          <div class="prow"><b>${p[0]}</b><span>${p[1]}</span></div>
+          <details><summary>Log a mark (${(log[id]||[]).length} logged)</summary>
+            <div class="log" data-id="${id}">
+              <label>Series sat<input type="text" placeholder="e.g. June 2024" maxlength="30"></label>
+              <label>Your mark<input class="n" type="number" inputmode="numeric" min="0"></label>
+              <label>Out of<input class="n" type="number" inputmode="numeric" min="1"></label>
+              <button class="btn" type="button" data-add="${id}">Save mark</button>
+            </div>
+            <p class="err" hidden></p>
+            <ul class="attempts">${attemptsHTML(id)}</ul>
+          </details>
+        </div>`}).join("")}
+    </section>`).join("");
+}
+document.getElementById("list").addEventListener("click",e=>{
+  const add=e.target.closest("[data-add]"), del=e.target.closest("[data-del]");
+  if(add){
+    const id=add.dataset.add, box=add.closest(".log"), [s,m,o]=box.querySelectorAll("input"), err=box.nextElementSibling;
+    const mv=parseFloat(m.value), ov=parseFloat(o.value);
+    if(!s.value.trim()||isNaN(mv)||isNaN(ov)||ov<=0||mv<0||mv>ov){err.textContent="Enter the series, your mark and the total, with your mark no higher than the total.";err.hidden=false;return;}
+    (log[id]=log[id]||[]).push({s:s.value.trim(),m:mv,o:ov}); save();
+    const det=add.closest("details"); render();
+    document.querySelector(`[data-id="${id}"]`).closest("details").open=true;
+  }
+  if(del){
+    const [id,i]=del.dataset.del.split("|"); log[id].splice(+i,1); save(); render();
+    document.querySelector(`[data-id="${id}"]`).closest("details").open=true;
+  }
+});
+render();
+</script>
+</body>
+</html>
