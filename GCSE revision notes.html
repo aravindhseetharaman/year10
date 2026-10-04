@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>GCSE revision notes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  --desk:#E6ECF4; --tab-off:#D6DEEA; --paper:#FDFEFF; --grid:#DCE5F1; --line:#C6D1E1;
+  --margin:#E59AA2; --ink:#1D3A8A; --text:#22252B; --muted:#576072;
+  --red:#C81E2B; --fb:#9E1420; --red-soft:#FCEBEC; --high:#FFE45C; --high-text:#22252B;
+  --focus:#F2A900; --eqbg:#EEF3FB;
+  --biology:#2E8B57; --chemistry:#7A3FA8; --physics:#2F5DB8; --history:#A0522D; --geography:#0E7C86; --maths:#A87400; --english:#C2185B;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --desk:#0E1320; --tab-off:#161D2E; --paper:#1A2134; --grid:#222B42; --line:#2F3A56;
+    --margin:#7A3A44; --ink:#AFC2FF; --text:#E6E9F0; --muted:#9CA5B8;
+    --red:#FF7B7B; --fb:#FFA3A3; --red-soft:#33202A; --high:#5A4E12; --high-text:#FFF6CC; --eqbg:#202943;
+    --biology:#5FC08A; --chemistry:#B386DB; --physics:#6E93E6; --history:#E0956A; --geography:#4FC3CC; --maths:#E0B84A; --english:#F06292;
+  }
+}
+:root[data-theme="dark"]{
+  --desk:#0E1320; --tab-off:#161D2E; --paper:#1A2134; --grid:#222B42; --line:#2F3A56;
+  --margin:#7A3A44; --ink:#AFC2FF; --text:#E6E9F0; --muted:#9CA5B8;
+  --red:#FF7B7B; --fb:#FFA3A3; --red-soft:#33202A; --high:#5A4E12; --high-text:#FFF6CC; --eqbg:#202943;
+  --biology:#5FC08A; --chemistry:#B386DB; --physics:#6E93E6; --history:#E0956A; --geography:#4FC3CC;
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--desk);color:var(--text);
+  font:400 1.0625rem/1.6 "Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.wrap{max-width:54rem;margin:0 auto;padding:2.5rem 1.25rem 4rem}
+h1,h2,h3,.display{font-family:"Bricolage Grotesque","Avenir Next","Segoe UI",system-ui,sans-serif}
+h1{font-weight:800;font-size:clamp(2.2rem,7vw,3.6rem);line-height:1;letter-spacing:-.025em;margin:0 0 .8rem;color:var(--ink)}
+.intro{max-width:37rem;color:var(--muted);margin:0 0 2rem}
+.hand{font-family:Caveat,"Bradley Hand","Segoe Print",cursive;color:var(--red);font-weight:700}
+
+.tabs{display:flex;gap:.4rem;flex-wrap:wrap}
+.tab{appearance:none;border:0;font:inherit;color:var(--text);cursor:pointer;text-align:left;
+  background:var(--tab-off);padding:.7rem 1.1rem .65rem;min-width:9.5rem;
+  border-radius:.55rem .55rem 0 0;border-top:6px solid var(--c)}
+.tab[aria-selected="true"]{background:var(--paper)}
+.tab b{display:block;font-family:"Bricolage Grotesque",system-ui,sans-serif;font-weight:800;font-size:1.12rem}
+.tab small{color:var(--muted);font-size:.85rem}
+button:focus-visible,input:focus-visible,a:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+
+.paper{position:relative;background-color:var(--paper);border-radius:0 .5rem .5rem .5rem;
+  padding:1.75rem 1.5rem 2.5rem 4.75rem;
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px);background-size:100% 30px}
+.paper::before{content:"";position:absolute;top:0;bottom:0;left:3.6rem;width:2px;background:var(--margin)}
+
+.contents{display:flex;flex-wrap:wrap;gap:.4rem;margin:0 0 1.75rem;padding:0;list-style:none}
+.chip{appearance:none;font:inherit;font-size:.92rem;cursor:pointer;color:var(--text);
+  background:var(--paper);border:1.5px solid var(--line);border-radius:.4rem;padding:.3rem .65rem;display:flex;gap:.4rem;align-items:baseline}
+.chip .ref{color:var(--muted);font-variant-numeric:tabular-nums}
+.chip[aria-current="true"]{border-color:var(--sub);box-shadow:inset 0 -3px 0 var(--sub);font-weight:700}
+.chip .done{font-family:Caveat,cursive;color:var(--red);font-size:1.25rem;line-height:.8}
+
+.lesson h2{margin:0 0 .3rem;font-size:clamp(1.6rem,4.5vw,2.1rem);font-weight:800;letter-spacing:-.015em;color:var(--ink);line-height:1.1}
+.meta{margin:0 0 1.25rem;color:var(--muted)}
+.big{font-size:1.15rem;max-width:38rem;margin:0 0 1.5rem}
+.lesson h3{font-size:1.2rem;font-weight:800;color:var(--ink);margin:2rem 0 .6rem}
+.ideas{list-style:none;margin:0;padding:0;max-width:40rem}
+.ideas li{position:relative;margin:0 0 .85rem}
+.ideas b{color:var(--ink)}
+.ideas li.tri{padding-left:.75rem;border-left:3px solid var(--red)}
+.mnote{position:absolute;left:-4.55rem;top:.05rem;width:3.1rem;text-align:right;
+  font-family:Caveat,"Bradley Hand",cursive;color:var(--red);font-weight:700;font-size:1.05rem;line-height:.95}
+.ideas li:not(.tri) .mnote{left:-3.8rem}
+.eqs{display:grid;gap:.5rem;max-width:40rem}
+.eq{background:var(--eqbg);border-radius:.4rem;padding:.55rem .9rem;display:grid;grid-template-columns:minmax(9rem,auto) 1fr;gap:.2rem 1.25rem;align-items:baseline}
+.eq code{font-family:"Bricolage Grotesque",system-ui,sans-serif;font-weight:800;font-size:1.08rem;color:var(--ink);white-space:nowrap}
+.eq span{color:var(--muted);font-size:.95rem}
+.rps{margin:0;padding-left:1.2rem;max-width:40rem}
+.rps li{margin:.25rem 0}
+
+.check{margin:0 0 1.4rem;max-width:40rem}
+.check p.qq{margin:0 0 .4rem;font-weight:700}
+fieldset{border:0;margin:0;padding:0;min-width:0}
+legend{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.opt{display:flex;gap:.65rem;align-items:baseline;padding:.25rem .55rem;margin:.1rem 0;border-radius:.3rem;cursor:pointer;width:fit-content;max-width:100%}
+.opt input{accent-color:var(--ink);transform:translateY(.1rem);flex:none}
+.opt.is-right{background:var(--high);color:var(--high-text)}
+.opt.is-wrong span{text-decoration:line-through;text-decoration-color:var(--red);text-decoration-thickness:2px}
+.why{margin:.45rem 0 0;color:var(--fb)}
+.why .hand{font-size:1.5rem;margin-right:.35rem}
+
+.nav{display:flex;gap:.6rem;flex-wrap:wrap;align-items:center;margin-top:2rem;padding-top:1.5rem;border-top:1px dashed var(--line)}
+.btn{font:800 1rem "Bricolage Grotesque",system-ui,sans-serif;padding:.75rem 1.25rem;border-radius:.5rem;
+  border:2px solid var(--ink);background:var(--ink);color:var(--paper);cursor:pointer}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn[disabled]{opacity:.4;cursor:default}
+.spacer{flex:1}
+.foot{margin-top:2rem;color:var(--muted);font-size:.9rem;max-width:42rem}
+.sr{position:absolute;left:-9999px}
+
+@media (max-width:600px){
+  .wrap{padding:1.75rem .75rem 3rem}
+  .tab{min-width:0;flex:1 1 30%;padding:.6rem .7rem}
+  .paper{padding:1.4rem 1rem 2rem 3.1rem}
+  .paper::before{left:2.35rem}
+  .mnote{left:-3.15rem;width:2.3rem;font-size:.95rem}
+  .ideas li:not(.tri) .mnote{left:-2.4rem}
+  .eq{grid-template-columns:1fr}
+  .eq code{white-space:normal}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>GCSE revision notes</h1>
+    <p class="intro">Maths (Higher), English Language and Literature, triple science, History and Geography, following the AQA GCSE specifications for students starting Year 10 in September 2026 and sitting exams in summer 2028. Content only on the separate science courses is marked <span class="hand">triple only</span> in the margin, and Geography case studies are marked <span class="hand">case study</span>. HT means Higher tier only.</p>
+  </header>
+  <div class="tabs" role="tablist" aria-label="Subjects" id="tabs"></div>
+  <main class="paper" id="paper" role="tabpanel"></main>
+  <p class="foot">Notes are written to match the AQA GCSE Biology (8461), Chemistry (8462) and Physics (8463), History (8145) and Geography (8035) specifications, alongside Mathematics (8300), English Language (8700) and English Literature (8702), but they're a revision aid rather than official AQA material. Check your school's topic order and the latest specification for anything you're unsure about. Your revised topics are remembered in this browser only.</p>
+</div>
+
+<script>
+const S = {
+maths:{name:"Maths",eqTitle:"Key formulas",
+opt:"AQA GCSE Mathematics (8300), Higher tier. Three equally weighted papers: Paper 1 is non-calculator, Papers 2 and 3 allow a calculator. Points marked HT are Higher tier only.",
+topics:[
+{n:"N",t:"Number",p:"Papers 1, 2 and 3",big:"The building blocks: primes, fractions, powers, standard form, surds and accuracy.",
+k:[["Order of operations","Brackets, indices, division and multiplication, then addition and subtraction (BIDMAS)."],
+["Prime factors, HCF and LCM","Write numbers as products of primes, for example 60 = 2² × 3 × 5. In a Venn diagram of prime factors, the HCF is the overlap and the LCM is everything."],
+["Fractions","Add or subtract with a common denominator. Multiply tops and bottoms. To divide, flip the second fraction and multiply. Turn mixed numbers into improper fractions first."],
+["Recurring decimals (HT)","Let x equal the decimal, multiply by a power of 10 to line up the repeating part, subtract, and solve for x."],
+["Index laws","Multiply: add powers. Divide: subtract powers. Power of a power: multiply. a⁰ = 1, and a negative power means the reciprocal. HT: fractional powers mean roots."],
+["Standard form","A × 10ⁿ where 1 ≤ A < 10. Multiply the numbers and add the powers; divide the numbers and subtract the powers."],
+["Surds (HT)","√a × √b = √(ab). Simplify by taking out square factors: √12 = 2√3. Rationalise a denominator by multiplying top and bottom by the surd, or by the conjugate such as (3 − √2)."],
+["Rounding and bounds","Round to decimal places or significant figures. A length of 7.4 cm to 1 d.p. lies in the error interval 7.35 ≤ x < 7.45. HT: for a maximum of a ÷ b, use the upper bound of a and the lower bound of b."],
+["Estimation","Round each number to 1 significant figure to estimate, and use estimates to check calculator answers."]],
+eq:[["aᵐ × aⁿ = aᵐ⁺ⁿ","Add powers when multiplying."],["aᵐ ÷ aⁿ = aᵐ⁻ⁿ","Subtract powers when dividing."],["(aᵐ)ⁿ = aᵐⁿ","Multiply powers."],["a⁻ⁿ = 1 ÷ aⁿ","Negative power means reciprocal."],["a^(m/n) = (ⁿ√a)ᵐ","Root first, then power (HT)."]],
+q:[["Write 60 as a product of prime factors.",["2 × 30","2² × 3 × 5","4 × 15","2 × 3 × 10"],1,"60 = 2 × 2 × 3 × 5 = 2² × 3 × 5. Every factor must be prime."],
+["Simplify √50.",["5√2","25√2","2√5","10√5"],0,"√50 = √25 × √2 = 5√2."]]},
+
+{n:"A",t:"Algebra",p:"Papers 1, 2 and 3",big:"The biggest part of Higher maths: manipulating expressions, solving equations, sequences, graphs and proof.",
+k:[["Expanding and simplifying","Collect like terms. Expand single, double and triple brackets by multiplying every term in one bracket by every term in the other."],
+["Factorising","Take out the highest common factor. For x² + bx + c, find two numbers that multiply to c and add to b. Difference of two squares: a² − b² = (a + b)(a − b). HT: factorise when the coefficient of x² isn't 1."],
+["Solving equations","Do the same to both sides. Solve quadratics by factorising, the quadratic formula, or (HT) completing the square."],
+["Completing the square (HT)","x² + bx + c = (x + b/2)² − (b/2)² + c. The turning point of y = (x + p)² + q is (−p, q)."],
+["Simultaneous equations","Eliminate a variable by adding or subtracting, or substitute. HT: for one linear and one quadratic equation, substitute the linear one into the quadratic."],
+["Inequalities","Solve like equations, but reverse the sign when multiplying or dividing by a negative. Show solutions on a number line or as a region on a graph. HT: quadratic inequalities."],
+["Sequences","Linear nth term: an + b, where a is the common difference. HT: quadratic nth term an² + bn + c, where 2a is the second difference. Also geometric and Fibonacci-type sequences."],
+["Straight-line graphs","In y = mx + c, m is the gradient and c the y-intercept. Parallel lines have equal gradients. HT: perpendicular gradients multiply to −1."],
+["Other graphs","Recognise quadratic, cubic and reciprocal graphs, and (HT) exponential and trigonometric graphs and transformations such as y = f(x) + a and y = f(x + a)."],
+["Functions (HT)","fg(x) means apply g first, then f. The inverse f⁻¹(x) reverses f."],
+["Iteration (HT)","Use a formula such as xₙ₊₁ = ... repeatedly from a starting value to approximate a solution."],
+["Algebraic proof (HT)","Use 2n for even and 2n + 1 for odd numbers, and show an expression simplifies to the required form."],
+["Circles and gradients (HT)","x² + y² = r² is a circle centred at the origin. A tangent is perpendicular to the radius. The gradient of a curve is estimated with a tangent; the area under a velocity–time graph is distance."]],
+eq:[["x = (−b ± √(b² − 4ac)) ÷ 2a","Quadratic formula for ax² + bx + c = 0."],["y = mx + c","Equation of a straight line."],["m = (y₂ − y₁) ÷ (x₂ − x₁)","Gradient between two points."],["a² − b² = (a + b)(a − b)","Difference of two squares."],["x² + y² = r²","Circle centred at the origin (HT)."]],
+q:[["Factorise x² − 9.",["(x − 3)²","(x + 3)(x − 3)","(x − 9)(x + 1)","x(x − 9)"],1,"It's a difference of two squares: x² − 3² = (x + 3)(x − 3)."],
+["What is the nth term of 5, 8, 11, 14, …?",["3n + 2","n + 3","5n","3n + 5"],0,"The common difference is 3, giving 3n. When n = 1, 3n = 3, so add 2 to reach 5."]]},
+
+{n:"R",t:"Ratio, proportion and rates of change",p:"Papers 1, 2 and 3",big:"Comparing quantities, percentages, growth and decay, proportion and compound measures.",
+k:[["Ratio","Simplify by dividing by a common factor. To share in a ratio, add the parts, find one part, then multiply."],
+["Percentages","Use multipliers: a 15% increase is × 1.15, a 15% decrease is × 0.85. Percentage change = change ÷ original × 100."],
+["Reverse percentages","If a price after a 20% increase is £96, the original is 96 ÷ 1.2 = £80. Don't just take 20% off £96."],
+["Growth and decay","Final amount = original × multiplierⁿ. For 3% compound interest over 5 years, multiply by 1.03⁵."],
+["Direct and inverse proportion","Direct: y = kx (or y = kx², etc.). Inverse: y = k ÷ x. Find k from given values, then use it."],
+["Compound measures","Speed, density and pressure. Check the units match before calculating."],
+["Units and best buys","Compare cost per unit. Take care with area units (1 m² = 10,000 cm²) and volume units (1 m³ = 1,000,000 cm³)."],
+["Rates of change (HT)","The gradient of a graph is a rate of change; for a curve, draw a tangent to estimate it."]],
+eq:[["speed = distance ÷ time",""],["density = mass ÷ volume",""],["pressure = force ÷ area",""],["final = original × multiplierⁿ","Compound growth or depreciation."],["% change = change ÷ original × 100",""]],
+q:[["After a 20% increase a price is £96. What was the original price?",["£76.80","£80","£76","£115.20"],1,"Divide by the multiplier: 96 ÷ 1.2 = £80."],
+["£500 is invested at 4% compound interest. What is it worth after 2 years?",["£540","£540.80","£520","£580"],1,"500 × 1.04² = £540.80."]]},
+
+{n:"G",t:"Geometry and measures",p:"Papers 1, 2 and 3",big:"Angles, shapes, area and volume, Pythagoras and trigonometry, transformations, circle theorems and vectors.",
+k:[["Angle facts","Angles on a straight line add to 180°, around a point to 360° and in a triangle to 180°. Vertically opposite angles are equal."],
+["Parallel lines","Alternate angles are equal, corresponding angles are equal and co-interior angles add to 180°."],
+["Polygons","Exterior angles add to 360°. Each interior angle + its exterior angle = 180°. Interior angles add to (n − 2) × 180°."],
+["Area and perimeter","Triangle ½bh, trapezium ½(a + b)h, circle πr², circumference πd. Arc length and sector area are fractions of the full circle (angle ÷ 360)."],
+["Volume and surface area","Prisms and cylinders: cross-section area × length. Learn how to use the formulas for cones, spheres and pyramids."],
+["Pythagoras and trigonometry","a² + b² = c² in right-angled triangles. SOH CAH TOA finds sides and angles. Learn exact values of sin, cos and tan for 0°, 30°, 45°, 60° and 90°."],
+["Sine and cosine rules (HT)","For any triangle. Use the sine rule with matching pairs of sides and angles; use the cosine rule with three sides, or two sides and the angle between them."],
+["Congruence and similarity","Congruent triangles: SSS, SAS, ASA, RHS. Similar shapes: lengths scale by k, areas by k² and (HT) volumes by k³."],
+["Transformations","Reflection, rotation (centre, angle, direction), translation (column vector) and enlargement (centre and scale factor, including fractional and, for HT, negative)."],
+["Constructions, loci and bearings","Perpendicular and angle bisectors, and loci at a fixed distance from a point or line. Bearings are measured clockwise from north, with three figures."],
+["Circle theorems (HT)","The angle at the centre is twice the angle at the circumference; the angle in a semicircle is 90°; opposite angles of a cyclic quadrilateral add to 180°; angles in the same segment are equal; a tangent meets a radius at 90°; and the alternate segment theorem."],
+["Vectors","Add, subtract and multiply column vectors by a scalar. HT: use vectors to prove lines are parallel or points are collinear."]],
+eq:[["a² + b² = c²","Pythagoras' theorem."],["sin θ = O ÷ H, cos θ = A ÷ H, tan θ = O ÷ A","SOH CAH TOA."],["a ÷ sin A = b ÷ sin B","Sine rule (HT)."],["a² = b² + c² − 2bc cos A","Cosine rule (HT)."],["area = ½ab sin C","Area of any triangle (HT)."],["(n − 2) × 180°","Sum of interior angles of a polygon."]],
+q:[["Each exterior angle of a regular polygon is 40°. How many sides does it have?",["8","9","10","12"],1,"Exterior angles add to 360°, so 360 ÷ 40 = 9 sides."],
+["Two similar shapes have lengths in the ratio 1 : 3. What is the ratio of their areas?",["1 : 3","1 : 6","1 : 9","1 : 27"],2,"Areas scale by the square of the length factor: 3² = 9."]]},
+
+{n:"P",t:"Probability",p:"Papers 1, 2 and 3",big:"Measuring how likely things are, from simple events to tree diagrams and conditional probability.",
+k:[["The probability scale","From 0 (impossible) to 1 (certain). All outcomes add to 1, so P(not A) = 1 − P(A)."],
+["Relative frequency","Experimental probability = frequency ÷ number of trials. More trials give a more reliable estimate. Expected outcomes = probability × number of trials."],
+["Listing outcomes","Use systematic lists and sample space diagrams for combined events."],
+["Tree diagrams","Multiply along branches and add between branches. Without replacement, the second set of probabilities changes."],
+["Venn diagrams and set notation","A ∪ B means A or B or both; A ∩ B means A and B; A′ means not A; ξ is the universal set."],
+["Combined events","For independent events, P(A and B) = P(A) × P(B). For mutually exclusive events, P(A or B) = P(A) + P(B)."],
+["Conditional probability (HT)","The probability of an event given that another has happened. Restrict the total to the given condition, using a tree diagram, two-way table or Venn diagram."]],
+eq:[["P(not A) = 1 − P(A)",""],["P(A and B) = P(A) × P(B)","Independent events."],["P(A or B) = P(A) + P(B)","Mutually exclusive events."],["expected frequency = probability × trials",""]],
+q:[["P(rain) = 0.35. What is P(no rain)?",["0.35","0.65","0.75","1.35"],1,"1 − 0.35 = 0.65."],
+["A fair coin is flipped twice. What is P(two heads)?",["1/2","1/3","1/4","1/8"],2,"½ × ½ = ¼."]]},
+
+{n:"S",t:"Statistics",p:"Papers 1, 2 and 3",big:"Collecting, presenting and interpreting data, including the Higher-only cumulative frequency, box plots and histograms.",
+k:[["Sampling","A sample should represent the population. Random sampling reduces bias; small samples are less reliable."],
+["Averages and spread","Mean, median, mode and range. For grouped data, estimate the mean using midpoints, and identify the modal class."],
+["Charts","Bar charts, pie charts, frequency polygons, stem-and-leaf diagrams and time series."],
+["Scatter graphs","Show positive, negative or no correlation. Use a line of best fit to estimate values; interpolation is more reliable than extrapolation. Correlation doesn't prove causation."],
+["Cumulative frequency (HT)","Plot running totals at the upper class boundaries. Read off the median and quartiles to find the interquartile range."],
+["Box plots (HT)","Show the minimum, lower quartile, median, upper quartile and maximum. Compare distributions using an average and a measure of spread."],
+["Histograms (HT)","For unequal class widths, plot frequency density. The area of each bar represents frequency."]],
+eq:[["estimated mean = Σ(f × midpoint) ÷ Σf","Grouped data."],["frequency density = frequency ÷ class width","Histograms (HT)."],["IQR = upper quartile − lower quartile","Interquartile range (HT)."],["angle = frequency ÷ total × 360°","Pie charts."]],
+q:[["A histogram bar has class width 5 and frequency density 4. What is its frequency?",["9","1.25","20","0.8"],2,"Frequency = frequency density × class width = 4 × 5 = 20."],
+["What does negative correlation show?",["As one variable increases, the other decreases","Both variables increase together","There's no relationship","One variable causes the other"],0,"Negative correlation means a downward trend. It doesn't prove cause and effect."]]}
+]},
+
+english:{name:"English",eqTitle:"Key terms",
+opt:"AQA GCSE English Language (8700) and English Literature (8702). Literature set texts vary by school: these notes cover common choices (Macbeth, A Christmas Carol, An Inspector Calls and the Power and Conflict poems). Learn quotations from your own copies of the texts.",
+topics:[
+{n:"Lang 1",t:"Language Paper 1: Creative reading and writing",p:"Language Paper 1",big:"One fiction extract to read and analyse, then your own descriptive or narrative writing. 1 hour 45 minutes, 80 marks.",eqTitle:"Marks at a glance",
+k:[["Question 1","List four things from a specific part of the source. Short quotations or paraphrase are fine, but stay within the given lines."],
+["Question 2: language","Analyse the writer's words and phrases, language techniques and sentence forms. Quote, name techniques where useful, and explain the effect on the reader, zooming in on single words."],
+["Question 3: structure","Write about how the whole text is organised: the opening and ending, shifts in focus, changes of time, place or perspective, and pace. Explain why the writer takes the reader on that journey."],
+["Question 4: evaluation","Respond to a statement about the text. Say how far you agree, evaluate the writer's methods and their effects, and support your view with quotations."],
+["Question 5: writing","Write a description or a story, often based on a picture or title. Marked on content and organisation, and on technical accuracy."],
+["Timing","Many teachers suggest about 15 minutes reading, around 45 minutes on the reading questions (most on Question 4) and about 45 minutes on the writing."]],
+eq:[["Question 1","4 marks"],["Question 2","8 marks"],["Question 3","8 marks"],["Question 4","20 marks"],["Question 5","40 marks"]],
+q:[["What does Paper 1, Question 3 focus on?",["Language","Structure","Evaluation","Your own writing"],1,"Question 3 is about how the whole text is structured, not individual word choices."],
+["Which of these is a structural feature?",["A simile","A shift in focus from the setting to a character","Alliteration","A powerful verb"],1,"Shifts in focus are about how the text is organised; the others are language features."]]},
+
+{n:"Lang 2",t:"Language Paper 2: Viewpoints and perspectives",p:"Language Paper 2",big:"Two linked non-fiction sources, one from the 19th century and one from the 20th or 21st, then your own viewpoint writing. 1 hour 45 minutes, 80 marks.",eqTitle:"Marks at a glance",
+k:[["Question 1","Choose four true statements from a list of eight about part of Source A."],
+["Question 2: summary","Summarise differences (or similarities) between the two sources on a given focus, making inferences backed by evidence from both."],
+["Question 3: language","Analyse how one writer uses language to present something."],
+["Question 4: comparison","Compare how the two writers convey their perspectives and the methods they use. Keep comparing throughout rather than covering each source separately."],
+["Question 5: viewpoint writing","Write a letter, article, speech or essay giving your viewpoint. Match tone and form to audience and purpose, and use methods such as rhetorical questions, direct address, facts, anecdotes and counter-arguments."]],
+eq:[["Question 1","4 marks"],["Question 2","8 marks"],["Question 3","12 marks"],["Question 4","16 marks"],["Question 5","40 marks"]],
+q:[["How are the two sources in Paper 2 connected?",["Both are fiction","They're linked by topic","Both are poems","Both are from the 21st century"],1,"The sources share a topic but come from different time periods, so you can compare perspectives."],
+["Which technique strengthens a persuasive article?",["Addressing counter-arguments","Avoiding paragraphs","Using only the past tense","Avoiding punctuation"],0,"Raising and rebutting the opposing view makes your argument more convincing."]]},
+
+{n:"Skills",t:"Writing skills and Spoken Language",p:"Language Papers 1 and 2",big:"The techniques that lift your writing in both papers, and the separate Spoken Language endorsement.",
+k:[["Spoken Language endorsement","A presentation to an audience, graded Pass, Merit or Distinction. It's reported separately and doesn't affect your 9–1 grade."],
+["Sentence variety","Short sentences for impact, longer sentences for detail, and varied openings such as verbs, adverbs and prepositions."],
+["Punctuation for effect","Use semicolons, colons, dashes, brackets, ellipses and questions accurately and deliberately."],
+["Paragraphing","Start a new paragraph for a change of time, place, topic or speaker. A one-line paragraph creates emphasis."],
+["Vocabulary","Choose precise, ambitious words for their effect, not long words for their own sake."],
+["Planning and checking","Plan the shape of your writing before you start, and leave time to proofread."]],
+eq:[["Simile","A comparison using like or as."],["Metaphor","Describing something as if it were something else."],["Personification","Giving human qualities to something non-human."],["Pathetic fallacy","Weather or setting reflecting mood."],["Juxtaposition","Placing contrasting ideas side by side."],["Cyclical structure","The ending returns to the opening."]],
+q:[["How is the Spoken Language endorsement graded?",["9–1","Pass, Merit or Distinction","A*–G","It isn't graded"],1,"It's a separate endorsement and doesn't count towards the 9–1 grade."],
+["What is pathetic fallacy?",["A sad character","Weather or setting reflecting mood","An exaggeration","A rhetorical question"],1,"For example, a storm during a moment of conflict."]]},
+
+{n:"Lit 1",t:"Macbeth",p:"Literature Paper 1",big:"Shakespeare's tragedy of a Scottish soldier whose ambition, stirred by witches' prophecies and his wife's persuasion, leads to murder, tyranny and his downfall.",eqTitle:"Key quotations",
+k:[["Plot","The witches prophesy that Macbeth will be king. Persuaded by Lady Macbeth, he murders King Duncan. To keep power he has Banquo killed and Macduff's family slaughtered. Lady Macbeth is consumed by guilt and dies; Macduff kills Macbeth, and Malcolm becomes king."],
+["Macbeth","A brave, respected soldier at first. Ambition and the witches lead him to murder; he becomes a paranoid tyrant, then numb and isolated."],
+["Lady Macbeth","Ambitious and manipulative, she questions Macbeth's masculinity to push him to murder. Later she breaks down, sleepwalking and trying to wash away imagined blood."],
+["Banquo","Hears the prophecies but doesn't act on them, a foil to Macbeth. His ghost haunts Macbeth at the banquet."],
+["The witches","Supernatural figures who speak in riddles, raising questions of fate and free will."],
+["Themes","Ambition, power and tyranny, guilt, the supernatural, good and bad kingship, appearance and reality, and masculinity."],
+["Context","Written around 1606 for King James I, who was fascinated by witchcraft and believed in the divine right of kings. Killing a king (regicide) was seen as a sin against God's order, and the 1605 Gunpowder Plot made treason a live fear."]],
+eq:[["“Fair is foul, and foul is fair”","The witches; appearance and reality (Act 1)."],["“Stars, hide your fires”","Macbeth hides his dark ambition (Act 1)."],["“look like th' innocent flower, / But be the serpent under't”","Lady Macbeth on deception (Act 1)."],["“Is this a dagger which I see before me”","Macbeth's guilty hallucination (Act 2)."],["“O, full of scorpions is my mind”","Macbeth's paranoia (Act 3)."],["“Out, damned spot!”","Lady Macbeth's guilt (Act 5)."],["“Life's but a walking shadow”","Macbeth's despair (Act 5)."]],
+q:[["Who kills Macbeth?",["Banquo","Malcolm","Macduff","Fleance"],2,"Macduff kills Macbeth in Act 5, avenging his murdered family."],
+["Why would regicide shock Shakespeare's audience?",["Kings were thought to be chosen by God","Kings were elected","Scotland had no king","It was legal at the time"],0,"Under the divine right of kings, killing a king was a crime against God as well as the state."]]},
+
+{n:"Lit 2",t:"A Christmas Carol",p:"Literature Paper 1",big:"Dickens's novella about Ebenezer Scrooge, a miser transformed by four ghosts into a generous man who cares for others.",eqTitle:"Key quotations",
+k:[["Plot","Scrooge is visited by the ghost of his partner Jacob Marley, then by the Ghosts of Christmas Past, Present and Yet to Come. He wakes on Christmas Day transformed, and helps the Cratchit family, including Tiny Tim."],
+["Scrooge","Cold, greedy and isolated at first; by the end, joyful, generous and part of his community."],
+["The Cratchits","Poor but loving. Tiny Tim represents the vulnerable poor whom society neglects."],
+["Other characters","Fred, Scrooge's cheerful nephew; Fezziwig, a kind employer; and Belle, the fiancée Scrooge lost to his love of money."],
+["Themes","Redemption, social responsibility, poverty, family, generosity and the spirit of Christmas."],
+["Structure","Five chapters called staves, like a song, tracing Scrooge's change."],
+["Context","Published in 1843. Victorian poverty, workhouses under the 1834 Poor Law, Malthus's ideas about “surplus population”, and child labour. Dickens worked in a factory as a child."]],
+eq:[["“solitary as an oyster”","Scrooge's isolation (Stave 1)."],["“Are there no prisons?”","Scrooge rejects charity (Stave 1)."],["“decrease the surplus population”","Scrooge echoes Malthus (Stave 1)."],["“This boy is Ignorance. This girl is Want.”","The Ghost of Christmas Present (Stave 3)."],["“I will honour Christmas in my heart”","Scrooge promises to change (Stave 4)."]],
+q:[["How many staves is A Christmas Carol divided into?",["Three","Four","Five","Six"],2,"Five staves, like the verses of a carol."],
+["Whose ideas does Scrooge echo when he mentions “surplus population”?",["Malthus","Darwin","Marx","Shakespeare"],0,"Thomas Malthus argued population growth would outstrip food supply."]]},
+
+{n:"Lit 3",t:"An Inspector Calls",p:"Literature Paper 2",big:"J.B. Priestley's play, set in 1912, in which a mysterious inspector shows how each member of a wealthy family played a part in a young woman's death.",
+k:[["Plot","The Birlings celebrate Sheila's engagement to Gerald Croft when Inspector Goole arrives to investigate Eva Smith's death. Mr Birling sacked her after a strike; Sheila had her dismissed from a shop; Gerald had an affair with her as Daisy Renton; Mrs Birling refused her charity; Eric got her pregnant. After the Inspector leaves, they learn there's no Inspector Goole, then a phone call announces a girl has died and an inspector is on his way."],
+["The older Birlings","Mr Birling is a self-important capitalist; Mrs Birling is snobbish and refuses responsibility. Neither really changes."],
+["Sheila and Eric","The younger generation accept their responsibility and change, giving hope."],
+["Gerald","Partly sorry, but quickly reverts when he thinks there's no real inspector."],
+["The Inspector","Priestley's mouthpiece for social responsibility and socialism."],
+["Themes","Social responsibility, class, generational difference, gender and guilt."],
+["Context","Written in 1945 but set in 1912, so the audience sees Mr Birling's dramatic irony about war and the Titanic. Priestley supported socialism and the post-war welfare state."]],
+eq:[["Dramatic irony","The audience knows more than the characters."],["Mouthpiece","A character who voices the writer's views."],["Capitalism","An economic system based on private profit."],["Socialism","The belief that society should share wealth and responsibility."]],
+q:[["When is An Inspector Calls set?",["1912","1945","1918","1939"],0,"It's set in 1912 but was written in 1945, which creates dramatic irony."],
+["Which character changes most?",["Mr Birling","Mrs Birling","Sheila","Gerald"],2,"Sheila accepts responsibility and challenges her parents, representing hope for the future."]]},
+
+{n:"Lit 4",t:"Power and Conflict poetry",p:"Literature Paper 2",big:"Fifteen anthology poems about the power of nature and people, and the effects of war and conflict. In the exam you compare one named poem with another of your choice.",eqTitle:"Pairings to practise",
+k:[["The poems","Ozymandias, London, Extract from The Prelude, My Last Duchess, The Charge of the Light Brigade, Exposure, Storm on the Island, Bayonet Charge, Remains, Poppies, War Photographer, Tissue, The Émigrée, Checking Out Me History and Kamikaze."],
+["Power of nature","The Prelude extract, Storm on the Island and Exposure show nature overpowering people."],
+["Human power","Ozymandias and My Last Duchess show the arrogance of rulers. London and Checking Out Me History challenge institutions and who controls history."],
+["Effects of war","Remains and War Photographer explore trauma and guilt; Bayonet Charge, Exposure and The Charge of the Light Brigade show soldiers' experience; Poppies and Kamikaze focus on family and loss."],
+["Identity","Tissue, The Émigrée and Checking Out Me History explore identity, memory and belonging."],
+["The exam","Only the named poem is printed, so learn the key lines and main ideas of every poem."],
+["Comparing well","Compare ideas, then methods (language, form and structure), then context, using words like similarly, whereas and in contrast."]],
+eq:[["Ozymandias + My Last Duchess","Arrogant power."],["Exposure + Storm on the Island","The power of nature."],["Remains + War Photographer","Memory and trauma."],["Poppies + Kamikaze","Family and loss."],["Tissue + Checking Out Me History","Identity and control."]],
+q:[["How many poems are in the Power and Conflict cluster?",["12","15","18","20"],1,"There are fifteen poems."],
+["In the exam, which poems are printed?",["All fifteen","Only the named poem","None","Two of your choice"],1,"The second poem must come from memory."]]},
+
+{n:"Lit 5",t:"Unseen poetry",p:"Literature Paper 2",big:"You analyse a poem you haven't seen before, then compare it with a second unseen poem.",
+k:[["First read","Work out what the poem is about, who the speaker is and the main feeling or idea."],
+["Language","Pick out key words, imagery and techniques, and explain their effect."],
+["Form and structure","Look at stanzas, rhyme, rhythm, line breaks, enjambment and caesura, and how the poem changes from start to finish."],
+["The comparison question","Focus on the methods the two poets use, comparing similarities and differences."]],
+eq:[["Enjambment","A sentence running over a line break."],["Caesura","A pause in the middle of a line."],["Volta","A turning point in a poem."],["Free verse","Poetry without regular rhyme or rhythm."],["Sonnet","A 14-line poem, often about love."]],
+q:[["What is enjambment?",["A pause mid-line","A sentence running over a line break","A rhyming couplet","A repeated line"],1,"Enjambment carries meaning across a line break, often creating pace or tension."],
+["What is a volta?",["A type of rhyme","A turning point in a poem","A long stanza","A metaphor"],1,"A volta marks a shift in tone or argument, common in sonnets."]]}
+]},
+
+biology:{name:"Biology",topics:[
+{n:"4.1",t:"Cell biology",p:1,big:"Every living thing is made of cells. This topic covers what's inside them, how they divide, and how substances move in and out.",
+k:[["Eukaryotes and prokaryotes","Animal and plant cells are eukaryotic: their DNA is in a nucleus. Bacteria are prokaryotic: much smaller, no nucleus, a single loop of DNA and sometimes small rings called plasmids."],
+["Animal cell parts","Nucleus (controls the cell, holds DNA), cytoplasm (where most reactions happen), cell membrane (controls what enters and leaves), mitochondria (aerobic respiration) and ribosomes (protein synthesis)."],
+["Plant cell extras","A cellulose cell wall for strength, chloroplasts for photosynthesis, and a permanent vacuole filled with cell sap."],
+["Microscopy","Electron microscopes have far higher magnification and resolution than light microscopes, so they show tiny structures like ribosomes in detail."],
+["Specialisation","Cells differentiate to suit a job: sperm cells have a tail and many mitochondria, nerve cells are long and branched, root hair cells have a large surface area. Most animal cells differentiate early; many plant cells can differentiate throughout life."],
+["The cell cycle and mitosis","The cell grows, copies its DNA and makes more organelles. In mitosis one set of chromosomes is pulled to each end, then the cytoplasm and membrane divide, making two identical cells."],
+["Stem cells","Undifferentiated cells that can become other cell types. Embryonic stem cells can become most types, adult bone marrow stem cells form blood cells, and plant meristems can form any plant cell. Therapeutic cloning gives an embryo the patient's own genes so cells aren't rejected."],
+["Diffusion","Net movement of particles from a higher to a lower concentration. Faster with a steeper concentration gradient, higher temperature and larger surface area."],
+["Osmosis","Diffusion of water from a dilute solution to a more concentrated one through a partially permeable membrane."],
+["Active transport","Moves substances from a dilute to a more concentrated solution, against the gradient, using energy from respiration. Root hairs take in mineral ions this way."],
+["Exchange surfaces","Large organisms have a small surface area to volume ratio, so they need adapted exchange surfaces: large area, thin membrane, good blood supply and ventilation. Examples: alveoli, villi, gills."],
+["Culturing microorganisms","Bacteria multiply by binary fission, as often as every 20 minutes. Aseptic technique: sterilise equipment, tape the Petri dish lid without fully sealing it, and incubate at 25 °C at school to avoid growing human pathogens.",1],
+["Testing antibiotics","Measure the clear inhibition zone around a disc and work out its area with πr². Bacteria after growth = bacteria at start × 2 to the power of the number of divisions.",1]],
+eq:[["magnification = image size ÷ real size","Rearrange to find any of the three. Convert units first (1 mm = 1000 µm)."],["area of clear zone = πr²","Use the radius, not the diameter.",1]],
+rp:[["Microscopy: drawing cells and calculating magnification"],["Microbiology: effect of antiseptics or antibiotics on bacterial growth",1],["Osmosis: mass change in potato in different sugar or salt solutions"]],
+q:[["An image of a cell is 5 mm wide at ×1000 magnification. What is the real width?",["5 µm","50 µm","0.5 µm","5000 mm"],0,"Real size = 5 mm ÷ 1000 = 0.005 mm. Multiply by 1000 to convert to micrometres: 5 µm."],
+["Which process needs energy from respiration?",["Diffusion","Osmosis","Active transport","Evaporation"],2,"Active transport moves substances against a concentration gradient, so it needs energy released by respiration."]]},
+
+{n:"4.2",t:"Organisation",p:1,big:"Cells form tissues, tissues form organs, and organs work together in organ systems. This topic follows that idea through digestion, the heart and blood, disease, and plants.",
+k:[["Levels of organisation","Cells → tissues → organs → organ systems → organism."],
+["Digestive system","Breaks large insoluble molecules into small soluble ones that can be absorbed into the blood in the small intestine."],
+["Enzymes","Biological catalysts. The substrate fits the active site (lock and key model). Each enzyme has an optimum temperature and pH; too hot or the wrong pH changes the active site's shape, so it denatures."],
+["Digestive enzymes","Carbohydrases such as amylase break starch into sugars. Proteases break proteins into amino acids. Lipases break lipids into fatty acids and glycerol."],
+["Bile","Made in the liver and stored in the gall bladder. It's alkaline, so it neutralises stomach acid, and it emulsifies fat into small droplets, giving lipase a larger surface area."],
+["The heart","A double circulatory system: the right side pumps blood to the lungs, the left side to the rest of the body. A group of cells in the right atrium acts as a natural pacemaker."],
+["Blood vessels","Arteries have thick, muscular, elastic walls for high pressure. Veins have thinner walls and valves. Capillaries are one cell thick for exchange."],
+["Blood","Plasma carries cells and dissolved substances. Red blood cells carry oxygen using haemoglobin, have no nucleus and are biconcave. White blood cells defend against pathogens. Platelets help clotting."],
+["Coronary heart disease","Fatty deposits narrow the coronary arteries, reducing oxygen to the heart muscle. Treatments: stents, statins to lower cholesterol, replacement valves and transplants."],
+["Health and disease","Communicable diseases spread between people; non-communicable ones don't. Risk factors include smoking, diet, alcohol and exercise. Benign tumours stay in one place; malignant tumours are cancers that spread in the blood."],
+["Plant tissues","Xylem carries water and mineral ions up from the roots (the transpiration stream). Phloem carries dissolved sugars around the plant (translocation). Guard cells open and close stomata."],
+["Transpiration rate","Increases with higher temperature, light intensity and air movement, and with lower humidity."]],
+rp:[["Food tests: Benedict's (sugars), iodine (starch), biuret (protein), Sudan III (lipids)"],["Enzymes: effect of pH on the rate of amylase activity"]],
+q:[["Which enzyme breaks lipids into fatty acids and glycerol?",["Amylase","Protease","Lipase","Carbohydrase"],2,"Lipases break down lipids. Amylase breaks starch, proteases break proteins."],
+["What does bile do?",["Digests protein","Emulsifies fat and neutralises stomach acid","Absorbs glucose","Breaks starch into sugars"],1,"Bile contains no enzymes. It's alkaline and breaks fat into droplets so lipase works faster."]]},
+
+{n:"4.3",t:"Infection and response",p:1,big:"Pathogens cause communicable diseases. Your body defends itself, and vaccines and medicines help it.",
+k:[["Pathogens","Microorganisms that cause infectious disease: viruses, bacteria, protists and fungi. They spread by air, water or direct contact."],
+["Viral diseases","Measles: fever and red rash, spread by droplets. HIV: flu-like at first, attacks immune cells and can lead to AIDS; controlled with antiretroviral drugs. Tobacco mosaic virus: mottled leaves that photosynthesise less."],
+["Bacterial diseases","Salmonella food poisoning: fever, cramps, vomiting; UK poultry is vaccinated. Gonorrhoea: a sexually transmitted disease treated with antibiotics, though resistant strains exist; condoms reduce spread."],
+["Fungal and protist diseases","Rose black spot: purple or black spots, leaves fall early; treated with fungicides. Malaria: a protist spread by mosquitoes, causing recurring fevers; prevented with nets and by stopping mosquitoes breeding."],
+["Non-specific defences","Skin, hairs and mucus in the nose, cilia in the trachea and bronchi, and stomach acid."],
+["Immune system","White blood cells engulf pathogens (phagocytosis), make antibodies and make antitoxins."],
+["Vaccination","A dead or inactive form of a pathogen triggers antibody production. If the real pathogen enters later, white blood cells respond quickly. Vaccinating many people protects others too (herd immunity)."],
+["Antibiotics and painkillers","Antibiotics kill bacteria inside the body but don't affect viruses. Painkillers only treat symptoms. Antibiotic-resistant strains such as MRSA are increasing."],
+["Discovering and testing drugs","Digitalis comes from foxgloves, aspirin from willow, penicillin from Penicillium mould (Fleming). New drugs go through preclinical testing on cells, tissues and animals, then clinical trials at low doses, often double-blind with a placebo."],
+["Monoclonal antibodies","Made by fusing a mouse lymphocyte with a tumour cell to make a hybridoma cell, which divides and produces one type of antibody. Used in pregnancy tests, diagnosis, research and targeting cancer cells. They have caused more side effects than expected.",1],
+["Plant disease","Signs include stunted growth, spots, decay, growths, discolouration and pests. Nitrate deficiency causes stunted growth; magnesium deficiency causes chlorosis. Plants defend themselves physically (cell walls, waxy cuticle, bark), chemically (antibacterials, poisons) and mechanically (thorns, drooping leaves, mimicry).",1]],
+q:[["Why can't antibiotics treat flu?",["Flu is caused by a virus","Flu bacteria are resistant","Antibiotics only treat symptoms","Flu is non-communicable"],0,"Antibiotics only kill bacteria. Viruses live inside cells, so antibiotics can't reach them."],
+["Which cell produces monoclonal antibodies?",["Red blood cell","Hybridoma cell","Platelet","Stem cell"],1,"A hybridoma is a lymphocyte fused with a tumour cell: it makes one antibody and divides rapidly."]]},
+
+{n:"4.4",t:"Bioenergetics",p:1,big:"Photosynthesis stores energy in glucose. Respiration releases it. Almost every food chain depends on this pair of reactions.",
+k:[["Photosynthesis","An endothermic reaction in chloroplasts, using light energy: carbon dioxide + water → glucose + oxygen."],
+["Limiting factors","Rate depends on temperature, light intensity, carbon dioxide concentration and the amount of chlorophyll. Whichever is in shortest supply limits the rate."],
+["Inverse square law (HT)","Light intensity is proportional to 1 ÷ distance². Doubling the distance from a lamp cuts the light intensity to a quarter."],
+["Uses of glucose","Respiration, starch for storage, cellulose for cell walls, amino acids (with nitrate ions) for proteins, and fats or oils for storage."],
+["Aerobic respiration","An exothermic reaction in mitochondria that happens all the time: glucose + oxygen → carbon dioxide + water."],
+["Anaerobic respiration","In muscles: glucose → lactic acid, releasing much less energy. In plants and yeast: glucose → ethanol + carbon dioxide. This fermentation is used to make bread and alcoholic drinks."],
+["Response to exercise","Heart rate, breathing rate and breath volume rise to supply more oxygen. Afterwards, the oxygen debt is the extra oxygen needed to deal with lactic acid, which the blood carries to the liver to be turned back into glucose."],
+["Metabolism","The sum of all reactions in a cell or body, including making starch, glycogen, cellulose, lipids and proteins, respiration, and breaking excess protein into urea."]],
+eq:[["6CO₂ + 6H₂O → C₆H₁₂O₆ + 6O₂","Photosynthesis, balanced symbol equation."],["C₆H₁₂O₆ + 6O₂ → 6CO₂ + 6H₂O","Aerobic respiration, balanced symbol equation."],["light intensity ∝ 1 ÷ distance²","Inverse square law (HT)."]],
+rp:[["Photosynthesis: effect of light intensity on the rate of photosynthesis using pondweed"]],
+q:[["What are the products of anaerobic respiration in yeast?",["Lactic acid only","Ethanol and carbon dioxide","Glucose and oxygen","Carbon dioxide and water"],1,"Yeast ferments glucose to ethanol and carbon dioxide. Lactic acid is the product in muscles."],
+["A lamp is moved from 10 cm to 20 cm from a plant. What happens to the light intensity?",["It halves","It doubles","It falls to a quarter","It stays the same"],2,"Distance doubles, so intensity becomes 1 ÷ 2² = ¼ of the original."]]},
+
+{n:"4.5",t:"Homeostasis and response",p:2,big:"Your body keeps internal conditions steady using nerves and hormones. Plants respond to their surroundings with hormones too.",
+k:[["Homeostasis","Regulating internal conditions such as blood glucose, body temperature and water levels, so enzymes and cells work well. Control systems have receptors, coordination centres and effectors."],
+["Nervous system","Stimulus → receptor → sensory neurone → central nervous system → motor neurone → effector → response."],
+["Reflexes","Automatic and fast, using a relay neurone in the spinal cord. At a synapse, chemicals diffuse across the gap to pass the signal on."],
+["Endocrine system","Glands secrete hormones into the blood. Effects are slower but last longer than nerve impulses. The pituitary gland is the master gland."],
+["Blood glucose","Too high: the pancreas releases insulin, cells take in glucose, and the liver and muscles store it as glycogen. Too low (HT): the pancreas releases glucagon, which turns glycogen back into glucose."],
+["Diabetes","Type 1: the pancreas makes too little insulin; treated with insulin injections. Type 2: cells stop responding to insulin; linked to obesity and managed with diet and exercise."],
+["Reproductive hormones","Oestrogen is the main female hormone, testosterone the main male hormone. In the menstrual cycle FSH matures an egg, LH triggers ovulation, and oestrogen and progesterone maintain the uterus lining."],
+["Contraception","Hormonal methods include the pill, implant, injection and patch. Non-hormonal methods include condoms, diaphragms, IUDs, spermicide, avoiding sex around ovulation, and surgery."],
+["The brain","Cerebral cortex: memory, language, consciousness. Cerebellum: balance and coordination. Medulla: unconscious actions like heart rate and breathing. Studied using MRI scans, people with brain damage, and electrical stimulation.",1],
+["The eye","The retina contains light receptors. Ciliary muscles and suspensory ligaments change the lens shape (accommodation): for a near object, ciliary muscles contract and the lens gets thicker. Short and long sight are corrected with lenses.",1],
+["Body temperature","The thermoregulatory centre in the brain monitors blood temperature. Too hot: sweating and vasodilation. Too cold: shivering and vasoconstriction.",1],
+["Kidneys","Filter the blood, reabsorb useful substances like glucose, some ions and water, and remove urea in urine. ADH from the pituitary makes the tubules reabsorb more water. Kidney failure is treated by dialysis or a transplant.",1],
+["Plant hormones","Auxin causes phototropism and gravitropism by building up unevenly. Gibberellins end seed dormancy; ethene controls fruit ripening. Uses include weedkillers and rooting powder.",1]],
+rp:[["Reaction time: effect of a factor on human reaction time",1],["Plant responses: effect of light or gravity on seedling growth",1]],
+q:[["Which hormone lowers blood glucose?",["Glucagon","Insulin","Adrenaline","Oestrogen"],1,"Insulin makes cells take in glucose and the liver store it as glycogen."],
+["Which part of the brain coordinates balance and muscle movement?",["Medulla","Cerebral cortex","Cerebellum","Pituitary"],2,"The cerebellum controls balance and coordination. The medulla controls heart rate and breathing."]]},
+
+{n:"4.6",t:"Inheritance, variation and evolution",p:2,big:"DNA carries the instructions for every organism. How it's passed on, and how it changes, explains variety and evolution.",
+k:[["Sexual and asexual reproduction","Sexual reproduction joins two gametes and creates variation. Asexual reproduction uses mitosis and one parent, producing clones."],
+["Meiosis","Produces four genetically different gametes, each with half the chromosomes (23 in humans). Fertilisation restores the full number."],
+["DNA and genes","DNA is a polymer made of two strands in a double helix, found in chromosomes. A gene is a section of DNA that codes for a sequence of amino acids to make a protein."],
+["Genetic terms","Alleles are versions of a gene. Dominant alleles show with one copy; recessive alleles need two. Homozygous means two identical alleles; heterozygous means two different. Genotype is the alleles; phenotype is the characteristic shown."],
+["Inherited disorders","Polydactyly (extra fingers or toes) is caused by a dominant allele. Cystic fibrosis is caused by a recessive allele. Embryo screening raises ethical, social and economic questions."],
+["Sex determination","Females are XX, males XY, giving a 50% chance of each."],
+["Variation and natural selection","Variation comes from genes, environment or both. Mutations occur continuously. Individuals best suited to the environment survive and reproduce, passing on their alleles; over time this can produce new species."],
+["Selective breeding","Choosing parents with useful traits over many generations. It can lead to inbreeding, reducing variation and increasing the risk of disease."],
+["Genetic engineering","Enzymes cut out a gene, which is inserted into another organism using a vector such as a plasmid or virus. Examples: bacteria making human insulin, and GM crops."],
+["Evidence and extinction","Fossils and antibiotic-resistant bacteria are evidence for evolution. Extinction can be caused by new predators, diseases, competitors, or environmental change."],
+["Classification","Linnaeus: kingdom, phylum, class, order, family, genus, species, with two-part (binomial) names. Woese's three-domain system: archaea, bacteria and eukaryota."],
+["DNA structure","Made of nucleotides, each a sugar, a phosphate and one of four bases (A, C, G, T). A pairs with T, C with G. Three bases code for one amino acid. (HT: the code is copied and proteins are made on ribosomes.)",1],
+["Cloning","Tissue culture, cuttings, embryo transplants and adult cell cloning, used to make Dolly the sheep.",1],
+["History of genetics and evolution","Mendel's pea experiments showed characteristics are passed on in units (now called genes). Darwin and Wallace developed natural selection. Speciation happens when isolated populations become so different they can't interbreed.",1]],
+q:[["Two parents are both carriers (Ff) of cystic fibrosis. What is the chance a child has the disorder?",["0%","25%","50%","75%"],1,"Ff × Ff gives FF, Ff, Ff, ff. Only ff has the disorder: 1 in 4, or 25%."],
+["How many chromosomes are in a human gamete?",["46","23","92","2"],1,"Meiosis halves the chromosome number from 46 to 23."]]},
+
+{n:"4.7",t:"Ecology",p:2,big:"Organisms depend on each other and on their environment. Humans affect both.",
+k:[["Interdependence","Species rely on each other for food, shelter, pollination and seed dispersal. In a stable community, species and environmental factors are in balance."],
+["Abiotic factors","Non-living: light intensity, temperature, moisture, soil pH and minerals, wind, carbon dioxide for plants and oxygen for aquatic animals."],
+["Biotic factors","Living: food availability, new predators, new pathogens and competition."],
+["Adaptations","Structural, behavioural and functional. Extremophiles live in very hot, salty or high-pressure places."],
+["Food chains","Producers make glucose by photosynthesis, then come primary, secondary and tertiary consumers. Predator and prey numbers rise and fall in cycles."],
+["Sampling","Quadrats estimate population size; transects show how distribution changes across an area."],
+["Cycles","Carbon: photosynthesis removes CO₂; respiration, combustion and decay return it. Water: evaporation, transpiration, condensation and precipitation."],
+["Biodiversity","The variety of species in an area. Threatened by waste, land use, peat bog destruction, deforestation and global warming. Protected by breeding programmes, hedgerows, reducing deforestation and recycling."],
+["Decomposition","Bacteria and fungi decay waste faster when it's warm, moist and oxygen is available. Anaerobic decay produces biogas (methane).",1],
+["Trophic levels and biomass","Pyramids of biomass show the mass at each level. Only about 10% passes to the next level; the rest is lost through respiration, waste and parts not eaten.",1],
+["Food security","Threatened by population growth, changing diets, pests, disease and climate change. Responses: efficient food production, sustainable fishing with quotas and net sizes, and mycoprotein from the fungus Fusarium.",1]],
+eq:[["efficiency = biomass transferred ÷ biomass available × 100","Efficiency of biomass transfer between trophic levels, as a percentage.",1]],
+rp:[["Field investigations: using quadrats and transects to measure population size and distribution"],["Decay: effect of temperature on the rate of decay of milk",1]],
+q:[["Which process removes carbon dioxide from the atmosphere?",["Respiration","Combustion","Photosynthesis","Decay"],2,"Plants and algae take in CO₂ for photosynthesis. The other three release it."],
+["Producers hold 1000 kg of biomass and primary consumers 100 kg. What is the efficiency of transfer?",["1%","10%","90%","100%"],1,"100 ÷ 1000 × 100 = 10%."]]}
+]},
+
+chemistry:{name:"Chemistry",topics:[
+{n:"4.1",t:"Atomic structure and the periodic table",p:1,big:"Everything is made of atoms. How the model of the atom developed, and how electrons are arranged, explains the patterns in the periodic table.",
+k:[["Elements, compounds, mixtures","An element has one type of atom. A compound is two or more elements chemically combined. In a mixture, substances aren't chemically combined."],
+["Separating mixtures","Filtration (insoluble solid from liquid), crystallisation (soluble solid from solution), simple distillation (liquid from a solution), fractional distillation (liquids with different boiling points) and chromatography."],
+["Model of the atom","Solid spheres → Thomson's plum pudding (after the electron was discovered) → Rutherford's alpha scattering showed a tiny, dense, positive nucleus → Bohr's electron shells → Chadwick discovered the neutron."],
+["Subatomic particles","Proton: charge +1, mass 1. Neutron: charge 0, mass 1. Electron: charge −1, very small mass. Atoms have equal numbers of protons and electrons, so no overall charge."],
+["Atomic and mass number","Atomic number = number of protons. Mass number = protons + neutrons. Isotopes have the same number of protons but different numbers of neutrons."],
+["Electronic structure","Shells fill in the pattern 2, 8, 8. Sodium is 2,8,1."],
+["The periodic table","Arranged by atomic number. Elements in a group have the same number of outer electrons. Mendeleev left gaps for undiscovered elements and changed some orders to fit patterns."],
+["Group 0","Noble gases have full outer shells, so they're unreactive. Boiling points increase down the group."],
+["Group 1","Alkali metals have one outer electron and react with water to form a metal hydroxide and hydrogen. Reactivity increases down the group as the outer electron is further from the nucleus."],
+["Group 7","Halogens exist as diatomic molecules and have seven outer electrons. Reactivity decreases and melting points increase down the group. A more reactive halogen displaces a less reactive one from a solution of its salt."],
+["Transition metals","Compared with Group 1: higher melting points and densities, stronger and harder, much less reactive. They form ions with different charges, make coloured compounds and are useful catalysts.",1]],
+eq:[["Aᵣ = Σ(isotope mass × abundance) ÷ 100","Relative atomic mass from isotope abundances."]],
+q:[["Chlorine-37 has atomic number 17. How many neutrons does it have?",["17","20","37","54"],1,"Neutrons = mass number − atomic number = 37 − 17 = 20."],
+["Why do Group 1 metals get more reactive down the group?",["They have more outer electrons","The outer electron is further from the nucleus","Their nuclei have fewer protons","Their atoms are smaller"],1,"More shells means weaker attraction to the outer electron, so it's lost more easily."]]},
+
+{n:"4.2",t:"Bonding, structure and properties",p:1,big:"How particles are held together decides whether a substance melts easily, conducts, or bends.",
+k:[["Ionic bonding","Between a metal and a non-metal. Electrons transfer, forming positive metal ions and negative non-metal ions in a giant lattice held by strong electrostatic forces in all directions."],
+["Ionic properties","High melting and boiling points. They conduct when melted or dissolved, because the ions are free to move, but not as solids."],
+["Covalent bonding","Non-metal atoms share pairs of electrons. Small molecules like H₂O, CH₄ and NH₃ have low melting points because only the weak intermolecular forces break, not the covalent bonds. They don't conduct."],
+["Giant covalent structures","Diamond: each carbon bonds to four others, very hard, very high melting point, doesn't conduct. Graphite: layers of hexagons, each carbon bonds to three, delocalised electrons let it conduct, and layers slide. Silicon dioxide is also giant covalent."],
+["Graphene and fullerenes","Graphene is a single layer of graphite, strong and conductive. Fullerenes are hollow carbon molecules such as buckminsterfullerene, C₆₀. Nanotubes are cylindrical fullerenes with a very high length-to-diameter ratio."],
+["Polymers","Very large molecules joined by strong covalent bonds. The intermolecular forces are relatively strong, so polymers are solid at room temperature."],
+["Metallic bonding","A lattice of positive ions in a sea of delocalised electrons. Metals have high melting points, conduct well and are malleable because layers slide. Alloys are harder because different-sized atoms distort the layers."],
+["States of matter","Solid, liquid and gas, shown by state symbols (s), (l), (g) and (aq) for aqueous."],
+["Nanoparticles","1 to 100 nm across. Their very high surface area to volume ratio makes them useful as catalysts, in sun creams, cosmetics and electronics, but possible health risks aren't fully understood.",1]],
+q:[["Why does graphite conduct electricity?",["It has free ions","It has delocalised electrons","Its layers slide","It's a metal"],1,"Each carbon bonds to only three others, leaving one electron per atom free to move through the structure."],
+["Why does solid sodium chloride not conduct?",["It has no ions","Its ions can't move","It has no electrons","It's covalent"],1,"The ions are fixed in the lattice. Melted or dissolved, they're free to move and carry charge."]]},
+
+{n:"4.3",t:"Quantitative chemistry",p:1,big:"Chemists measure how much reacts and how much is made. Moles link masses to numbers of particles.",
+k:[["Conservation of mass","Atoms aren't created or destroyed, so total mass of reactants equals total mass of products. A mass seems to change if a gas escapes or is taken in."],
+["Relative formula mass","Mᵣ is the sum of the relative atomic masses of all the atoms in the formula."],
+["Moles (HT)","One mole contains 6.02 × 10²³ particles (the Avogadro constant). The mass of one mole equals the Mᵣ in grams."],
+["Balancing from masses (HT)","Convert each mass to moles, then divide by the smallest number to find the ratio in the equation."],
+["Limiting reactant","The reactant that's used up first. It limits how much product forms; the other reactant is in excess."],
+["Concentration","Mass of solute in a given volume of solution, in g/dm³."],
+["Percentage yield","Usually less than 100% because reactions may not finish, side reactions happen, and product is lost when separating.",1],
+["Atom economy","The percentage of reactant atoms that end up in the useful product. A high atom economy means less waste and is more sustainable.",1],
+["Concentration in mol/dm³ (HT)","Used in titration calculations to find an unknown concentration.",1],
+["Gas volumes (HT)","One mole of any gas occupies 24 dm³ at room temperature and pressure.",1]],
+eq:[["moles = mass ÷ Mᵣ","HT. Mass in grams."],["concentration (g/dm³) = mass ÷ volume","Volume in dm³ (1 dm³ = 1000 cm³)."],["% yield = actual ÷ theoretical × 100","",1],["atom economy = Mᵣ of useful product ÷ total Mᵣ of reactants × 100","",1],["gas volume = moles × 24","HT, in dm³ at room temperature and pressure.",1]],
+q:[["How many moles are in 22 g of carbon dioxide (Mᵣ = 44)?",["0.5","2","22","968"],0,"Moles = 22 ÷ 44 = 0.5."],
+["A reaction should make 20 g of product but only 15 g is collected. What is the percentage yield?",["15%","25%","75%","133%"],2,"15 ÷ 20 × 100 = 75%."]]},
+
+{n:"4.4",t:"Chemical changes",p:1,big:"Metals, acids and electricity drive many useful reactions, from making salts to extracting aluminium.",
+k:[["Reactivity series","Potassium, sodium, lithium, calcium, magnesium, carbon, zinc, iron, hydrogen, copper. More reactive metals form positive ions more easily and displace less reactive metals from their compounds."],
+["Extracting metals","Metals less reactive than carbon, such as iron, are extracted by reduction with carbon. More reactive metals need electrolysis. Gold is found as the metal itself."],
+["Oxidation and reduction","Oxidation is gain of oxygen; reduction is loss of oxygen. HT: in terms of electrons, oxidation is loss and reduction is gain (OIL RIG)."],
+["Acids and metals","Metal + acid → salt + hydrogen. Hydrochloric acid makes chlorides, sulfuric acid makes sulfates, nitric acid makes nitrates."],
+["Neutralisation","Acid + alkali → salt + water. Acid + metal oxide or hydroxide → salt + water. Acid + carbonate → salt + water + carbon dioxide. Ionic equation: H⁺ + OH⁻ → H₂O."],
+["Making soluble salts","Add excess insoluble base to warm acid, filter off the excess, then crystallise the salt from the solution."],
+["pH","0 to 14. Acids produce H⁺ ions in water, alkalis produce OH⁻ ions. Measured with universal indicator or a pH probe."],
+["Strong and weak acids (HT)","Strong acids (hydrochloric, nitric, sulfuric) fully ionise in water; weak acids (ethanoic, citric, carbonic) only partly ionise. Each time H⁺ concentration rises by a factor of 10, pH falls by 1."],
+["Electrolysis","Ionic compounds must be molten or dissolved. Positive ions move to the cathode, negative ions to the anode. Molten lead bromide gives lead and bromine."],
+["Aqueous electrolysis","At the cathode, hydrogen forms unless the metal is less reactive than hydrogen. At the anode, oxygen forms unless halide ions are present, which give the halogen."],
+["Extracting aluminium","Electrolysis of aluminium oxide dissolved in molten cryolite, which lowers the melting point. The carbon anodes react with oxygen to form CO₂, so they must be replaced."],
+["Half equations (HT)","Cathode: 2H⁺ + 2e⁻ → H₂. Anode: 4OH⁻ → O₂ + 2H₂O + 4e⁻."],
+["Titrations","Find the exact volume of acid that neutralises an alkali using a pipette, a burette and an indicator. Repeat until results are concordant (within 0.10 cm³).",1]],
+rp:[["Making salts: preparing a pure, dry sample of a soluble salt"],["Neutralisation: titration to find reacting volumes of acid and alkali",1],["Electrolysis: investigating what's formed at each electrode"]],
+q:[["What is made when zinc reacts with hydrochloric acid?",["Zinc chloride and water","Zinc chloride and hydrogen","Zinc oxide and hydrogen","Zinc chloride and carbon dioxide"],1,"Metal + acid → salt + hydrogen. Hydrochloric acid gives a chloride."],
+["Copper chloride solution is electrolysed. What forms at the cathode?",["Hydrogen","Copper","Chlorine","Oxygen"],1,"Copper is less reactive than hydrogen, so copper is deposited instead of hydrogen bubbling off."]]},
+
+{n:"4.5",t:"Energy changes",p:1,big:"Reactions either give out or take in energy. Measuring that, and using it, matters for everything from hand warmers to batteries.",
+k:[["Exothermic reactions","Transfer energy to the surroundings, so temperature rises. Examples: combustion, many oxidation reactions, neutralisation. Uses: hand warmers, self-heating cans."],
+["Endothermic reactions","Take in energy, so temperature falls. Examples: thermal decomposition, citric acid with sodium hydrogencarbonate. Uses: some sports injury packs."],
+["Reaction profiles","Activation energy is the minimum energy particles need to react. In an exothermic profile, products are lower in energy than reactants."],
+["Bond energies (HT)","Breaking bonds is endothermic; making bonds is exothermic. If more energy is released making bonds than is needed to break them, the reaction is exothermic."],
+["Cells and batteries","Two different metals in an electrolyte. The bigger the difference in reactivity, the bigger the voltage. A battery is cells in series. Non-rechargeable cells stop when a reactant runs out.",1],
+["Fuel cells","Hydrogen and oxygen react to make water and produce electricity. Only water is made and there's no recharging, but hydrogen is hard to store, flammable and takes energy to produce. HT: 2H₂ → 4H⁺ + 4e⁻ and O₂ + 4H⁺ + 4e⁻ → 2H₂O.",1]],
+eq:[["energy change = energy to break bonds − energy released making bonds","HT. A negative answer means exothermic."]],
+rp:[["Temperature changes: variables affecting the temperature change in reacting solutions"]],
+q:[["Which reaction is endothermic?",["Combustion","Neutralisation","Thermal decomposition","Respiration"],2,"Thermal decomposition needs a continuous supply of heat to break the compound down."],
+["Breaking bonds needs 2000 kJ and making bonds releases 2500 kJ. What is the energy change?",["+500 kJ, endothermic","−500 kJ, exothermic","+4500 kJ","−4500 kJ"],1,"2000 − 2500 = −500 kJ. Negative means energy is released overall."]]},
+
+{n:"4.6",t:"Rates and equilibrium",p:2,big:"Some reactions are fast, some slow, and some go both ways. Collision theory explains why.",
+k:[["Measuring rate","Mean rate = quantity used or made ÷ time, for example in g/s or cm³/s. Measure with a gas syringe, loss of mass, or a colour change or cloudiness."],
+["Factors affecting rate","Concentration (or pressure for gases), surface area, temperature and catalysts."],
+["Collision theory","Particles must collide with at least the activation energy. More frequent collisions, or more energetic ones at higher temperatures, increase the rate."],
+["Catalysts","Speed up reactions without being used up, by providing a pathway with lower activation energy. Enzymes are biological catalysts."],
+["Reversible reactions","Shown with ⇌. If one direction is exothermic, the other is endothermic by the same amount. Blue hydrated copper sulfate ⇌ white anhydrous copper sulfate + water."],
+["Equilibrium","In a closed system, the forward and reverse reactions happen at the same rate, so amounts stay constant."],
+["Le Chatelier's principle (HT)","If conditions change, the equilibrium shifts to counteract the change. Raising temperature favours the endothermic direction. Raising pressure favours the side with fewer gas molecules. Adding reactant makes more product."],
+["Rate from a graph (HT)","The rate at a moment is the gradient of a tangent to the curve."]],
+eq:[["mean rate = quantity used or made ÷ time","Units such as g/s, cm³/s or mol/s (HT)."]],
+rp:[["Rates of reaction: effect of concentration on rate, by gas volume or cloudiness"]],
+q:[["Why does raising temperature increase the rate?",["Particles get bigger","Particles move faster, colliding more often and with more energy","Activation energy rises","The catalyst works harder"],1,"More frequent collisions, and more of them have at least the activation energy."],
+["In N₂ + 3H₂ ⇌ 2NH₃, what happens if pressure increases? (HT)",["More ammonia forms","Less ammonia forms","No change","The reaction stops"],0,"There are 4 gas molecules on the left and 2 on the right, so higher pressure favours the right."]]},
+
+{n:"4.7",t:"Organic chemistry",p:2,big:"Carbon compounds from crude oil give us fuels and plastics. Triple students also study alcohols, acids and polymers in detail.",
+k:[["Crude oil","A finite mixture of hydrocarbons, mostly alkanes, formed from ancient plankton buried in mud over millions of years."],
+["Alkanes","Saturated hydrocarbons with the general formula CₙH₂ₙ₊₂: methane, ethane, propane, butane."],
+["Fractional distillation","Crude oil is heated and the vapour rises up a column that's cooler at the top. Fractions condense at their boiling points: LPG, petrol, kerosene, diesel and heavy fuel oil."],
+["Properties of hydrocarbons","Longer chains have higher boiling points, are more viscous and are less flammable."],
+["Combustion","Complete combustion of a hydrocarbon produces carbon dioxide and water."],
+["Cracking","Breaks long alkanes into shorter, more useful alkanes and alkenes, using a hot catalyst or steam. Alkenes turn bromine water from orange to colourless."],
+["Alkenes","Unsaturated, with a C=C double bond and the formula CₙH₂ₙ. They undergo addition reactions with hydrogen, water (forming alcohols) and halogens.",1],
+["Alcohols","Contain –OH: methanol, ethanol, propanol, butanol. They react with sodium to give hydrogen, burn in air, dissolve in water and oxidise to carboxylic acids. Ethanol is made by fermenting sugar with yeast.",1],
+["Carboxylic acids","Contain –COOH, such as ethanoic acid. They're weak acids that react with carbonates to release CO₂, and with alcohols (with an acid catalyst) to form esters such as ethyl ethanoate.",1],
+["Polymers","Addition polymers form from alkenes, such as poly(ethene). Condensation polymers form from two monomers each with two functional groups, giving off a small molecule like water. Amino acids form proteins by condensation; DNA, starch and cellulose are natural polymers.",1]],
+q:[["What is the formula of the alkane with five carbon atoms?",["C₅H₁₀","C₅H₁₂","C₅H₈","C₅H₁₄"],1,"CₙH₂ₙ₊₂ with n = 5 gives C₅H₁₂ (pentane)."],
+["What is the test for an alkene?",["Limewater turns milky","Bromine water turns from orange to colourless","A lit splint pops","Litmus turns blue"],1,"The C=C double bond reacts with bromine, decolourising it."]]},
+
+{n:"4.8",t:"Chemical analysis",p:2,big:"Chemists identify substances using purity checks, chromatography, gas tests and, for triple, tests for ions.",
+k:[["Purity and formulations","A pure substance is a single element or compound and melts and boils at a fixed temperature. A formulation is a mixture designed for a purpose, such as paint, medicine, fuel or alloys."],
+["Chromatography","A mobile phase (solvent) moves through a stationary phase (paper). A pure substance gives one spot. Compare Rf values to identify substances."],
+["Gas tests","Hydrogen: a lit splint gives a squeaky pop. Oxygen: relights a glowing splint. Carbon dioxide: turns limewater milky. Chlorine: bleaches damp litmus paper."],
+["Flame tests","Lithium crimson, sodium yellow, potassium lilac, calcium orange-red, copper green.",1],
+["Hydroxide precipitates","Add sodium hydroxide. Aluminium, calcium and magnesium give white (aluminium redissolves in excess). Copper(II) blue, iron(II) green, iron(III) brown.",1],
+["Negative ions","Carbonates fizz with dilute acid, giving CO₂. Halides: add nitric acid then silver nitrate: chloride white, bromide cream, iodide yellow. Sulfates: add hydrochloric acid then barium chloride: white precipitate.",1],
+["Instrumental methods","Faster, more accurate and more sensitive than chemical tests. Flame emission spectroscopy identifies metal ions from their line spectra and can measure concentration.",1]],
+eq:[["Rf = distance moved by substance ÷ distance moved by solvent","Always less than 1."]],
+rp:[["Chromatography: separating coloured substances and calculating Rf values"],["Identifying ions: flame tests and precipitate tests",1]],
+q:[["A spot moves 3 cm while the solvent moves 6 cm. What is the Rf value?",["0.5","2","3","18"],0,"Rf = 3 ÷ 6 = 0.5."],
+["What flame colour does potassium give?",["Yellow","Crimson","Lilac","Green"],2,"Potassium is lilac. Sodium is yellow, lithium crimson, copper green."]]},
+
+{n:"4.9",t:"Chemistry of the atmosphere",p:2,big:"The air has changed hugely over Earth's history, and human activity is changing it again.",
+k:[["Today's atmosphere","About 80% nitrogen and 20% oxygen, with small amounts of carbon dioxide, water vapour and noble gases."],
+["Early atmosphere","Volcanoes released mainly carbon dioxide and water vapour, with nitrogen and small amounts of methane and ammonia. Water vapour condensed to form the oceans."],
+["Rise of oxygen","Algae and plants produced oxygen by photosynthesis over billions of years."],
+["Fall of carbon dioxide","CO₂ dissolved in the oceans and formed carbonate sediments, was used in photosynthesis, and was locked in sedimentary rocks and fossil fuels."],
+["Greenhouse gases","Water vapour, carbon dioxide and methane absorb infrared radiation emitted by Earth's surface, keeping it warm."],
+["Human activity","Burning fossil fuels and deforestation add CO₂. Cattle farming, rice fields and landfill add methane."],
+["Climate change effects","Rising sea levels, more extreme weather, changes in rainfall, and changes to where species live and how much food can be grown."],
+["Carbon footprint","The total greenhouse gas released over a product's or activity's life cycle. Reduced by renewable energy, saving energy, carbon capture, taxes and offsetting."],
+["Air pollutants","Carbon monoxide is toxic and has no colour or smell. Sulfur dioxide and oxides of nitrogen cause acid rain and breathing problems. Particulates cause global dimming and health problems."]],
+q:[["Which gas makes up about 80% of today's atmosphere?",["Oxygen","Carbon dioxide","Nitrogen","Argon"],2,"Nitrogen is about four-fifths of dry air."],
+["Where does most sulfur dioxide pollution come from?",["Burning fuels that contain sulfur","Photosynthesis","Cattle farming","Volcanic ash only"],0,"Sulfur impurities in fossil fuels oxidise when the fuel burns."]]},
+
+{n:"4.10",t:"Using resources",p:2,big:"Chemists help make water safe, materials last, and resources go further.",
+k:[["Sustainability","Meeting today's needs without stopping future generations meeting theirs."],
+["Potable water","Safe to drink, with low levels of dissolved salts and microbes. In the UK, water is filtered then sterilised with chlorine, ozone or UV. Desalination (distillation or reverse osmosis) needs a lot of energy."],
+["Waste water","Screening and grit removal, sedimentation into sludge and effluent, anaerobic digestion of sludge, and aerobic treatment of effluent."],
+["Alternative extraction (HT)","Phytomining: plants absorb metal compounds and are burned to ash. Bioleaching: bacteria produce solutions containing metal compounds."],
+["Life cycle assessment","Assesses environmental impact at each stage: raw materials, manufacture, use and disposal. Some effects are hard to put a number on."],
+["Reduce, reuse, recycle","Saves raw materials, energy and landfill space."],
+["Corrosion","Rusting needs both air and water. Prevented by barriers (paint, oil, grease) and sacrificial protection with a more reactive metal such as zinc (galvanising).",1],
+["Alloys","Bronze is copper and tin; brass is copper and zinc. Gold purity is measured in carats (24 carat is pure). Steels are iron with carbon or other metals. Aluminium alloys have low density.",1],
+["Ceramics, polymers, composites","Soda-lime and borosilicate glass, clay ceramics. Low and high density poly(ethene); thermosoftening and thermosetting polymers. Composites combine a matrix with a reinforcement, such as fibreglass.",1],
+["Haber process","N₂ + 3H₂ ⇌ 2NH₃. Nitrogen from air, hydrogen from natural gas. About 450 °C, 200 atmospheres and an iron catalyst: a compromise between yield, rate and cost (HT).",1],
+["NPK fertilisers","Supply nitrogen, phosphorus and potassium. Made using ammonia, phosphate rock and mined potassium compounds.",1]],
+rp:[["Water purification: analysing and purifying water samples"]],
+q:[["Which method can turn sea water into drinking water?",["Filtration only","Distillation","Chlorination only","Chromatography"],1,"Distillation (or reverse osmosis) removes the dissolved salts. Filtering doesn't."],
+["Which catalyst is used in the Haber process?",["Nickel","Iron","Platinum","Zinc"],1,"An iron catalyst speeds up the reaction so a reasonable rate is reached at 450 °C."]]}
+]},
+
+physics:{name:"Physics",topics:[
+{n:"4.1",t:"Energy",p:1,big:"Energy is stored in different ways and transferred between them, but the total never changes.",
+k:[["Energy stores","Kinetic, gravitational potential, elastic potential, thermal, chemical, magnetic, electrostatic and nuclear."],
+["Transfers","Energy moves between stores by heating, by work done by forces, and by electric current."],
+["Conservation of energy","Energy can be transferred, stored or dissipated, but never created or destroyed."],
+["Specific heat capacity","The energy needed to raise the temperature of 1 kg of a substance by 1 °C."],
+["Power","The rate of energy transfer. 1 watt = 1 joule per second."],
+["Efficiency","Wasted energy is usually dissipated to the thermal store of the surroundings. Lubrication and thermal insulation reduce waste. Thicker walls with lower thermal conductivity lose energy more slowly."],
+["Energy resources","Non-renewable: coal, oil, gas, nuclear. Renewable: biofuel, wind, hydroelectricity, geothermal, tides, sun, waves. Compare them on reliability, cost and environmental impact."]],
+eq:[["Eₖ = ½mv²","Kinetic energy (J), mass (kg), speed (m/s)."],["Eₚ = mgh","Gravitational potential energy; g is about 9.8 N/kg."],["Eₑ = ½ke²","Elastic potential energy; spring constant (N/m), extension (m)."],["ΔE = mcΔθ","Specific heat capacity c in J/kg °C."],["P = E ÷ t   P = W ÷ t","Power in watts."],["efficiency = useful output ÷ total input","Energy or power; multiply by 100 for a percentage."]],
+rp:[["Specific heat capacity: measuring it for a material"],["Thermal insulation: comparing materials as insulators",1]],
+q:[["How much energy heats 2 kg of water by 10 °C? (c = 4200 J/kg °C)",["8400 J","42 000 J","84 000 J","840 J"],2,"ΔE = 2 × 4200 × 10 = 84 000 J."],
+["A 5 kg box is lifted 2 m. What GPE does it gain? (g = 9.8 N/kg)",["10 J","49 J","98 J","196 J"],2,"Eₚ = 5 × 9.8 × 2 = 98 J."]]},
+
+{n:"4.2",t:"Electricity",p:1,big:"Circuits, resistance and mains electricity: how charge flows and how energy reaches your home.",
+k:[["Current","The rate of flow of charge. In a single closed loop, current is the same everywhere."],
+["Series circuits","Same current through each component; the potential difference is shared; total resistance R = R₁ + R₂."],
+["Parallel circuits","Same potential difference across each branch; total current is the sum of the branch currents; total resistance is less than the smallest single resistor."],
+["I–V characteristics","An ohmic resistor gives a straight line through the origin at constant temperature. A filament lamp's resistance rises as it heats up. A diode only lets current flow one way."],
+["Sensors","A thermistor's resistance falls as temperature rises. An LDR's resistance falls as light intensity rises."],
+["Mains electricity","UK mains is alternating current at 230 V and 50 Hz. Live wire brown, neutral blue, earth green and yellow. The live wire can be dangerous even when a switch is off."],
+["The National Grid","Step-up transformers raise the potential difference so current is lower, reducing energy lost in cables. Step-down transformers lower it to a safe level for homes."],
+["Static electricity","Rubbing insulators transfers electrons. Gaining electrons makes an object negative. Like charges repel, unlike charges attract. A big enough potential difference causes a spark.",1],
+["Electric fields","Surround charged objects and get weaker with distance. A charged object in the field feels a force.",1]],
+eq:[["Q = It","Charge (C) = current (A) × time (s)."],["V = IR","Potential difference (V) = current × resistance (Ω)."],["P = VI   P = I²R","Power in watts."],["E = Pt   E = QV","Energy transferred in joules."]],
+rp:[["Resistance: wire length, and resistors in series and parallel"],["I–V characteristics: resistor, filament lamp and diode"]],
+q:[["A 12 V supply drives 3 A through a resistor. What is its resistance?",["36 Ω","4 Ω","0.25 Ω","15 Ω"],1,"R = V ÷ I = 12 ÷ 3 = 4 Ω."],
+["What colour is the earth wire in a UK plug?",["Brown","Blue","Green and yellow","Red"],2,"Earth is green and yellow; live is brown, neutral is blue."]]},
+
+{n:"4.3",t:"Particle model of matter",p:1,big:"Thinking of matter as moving particles explains density, changes of state and gas pressure.",
+k:[["Density","Solids are usually densest; gases are least dense because their particles are far apart."],
+["Changes of state","Physical changes: mass is conserved and the material can return to its original form."],
+["Internal energy","The total kinetic and potential energy of the particles. Heating raises the temperature or changes the state."],
+["Specific latent heat","The energy needed to change the state of 1 kg without changing temperature. Fusion is solid ↔ liquid; vaporisation is liquid ↔ gas. Flat sections on a heating graph show a change of state."],
+["Gas pressure","Particles move randomly and collide with the walls. At constant volume, raising the temperature increases the pressure, because particles move faster and hit the walls harder and more often."],
+["Pressure and volume","For a fixed mass of gas at constant temperature, pV = constant.",1],
+["Doing work on a gas (HT)","Pumping up a tyre does work on the gas, increasing its internal energy and temperature.",1]],
+eq:[["ρ = m ÷ V","Density in kg/m³ or g/cm³."],["E = mL","Specific latent heat L in J/kg."],["pV = constant","Fixed mass of gas at constant temperature.",1]],
+rp:[["Density: regular and irregular solids, and liquids"]],
+q:[["A 400 g object has a volume of 50 cm³. What is its density?",["8 g/cm³","20 000 g/cm³","0.125 g/cm³","450 g/cm³"],0,"ρ = 400 ÷ 50 = 8 g/cm³."],
+["How much energy melts 0.5 kg of ice? (L = 334 000 J/kg)",["668 000 J","167 000 J","334 000 J","33 400 J"],1,"E = mL = 0.5 × 334 000 = 167 000 J."]]},
+
+{n:"4.4",t:"Atomic structure",p:1,big:"Unstable nuclei give out radiation. Understanding how it behaves keeps us safe and lets us use it.",
+k:[["The atom","Radius about 1 × 10⁻¹⁰ m. The nucleus is less than 1/10 000 of that. Electrons move to higher shells by absorbing electromagnetic radiation and fall back by emitting it."],
+["Developing the model","Plum pudding → Rutherford's alpha scattering showed a small positive nucleus → Bohr's electron shells → Chadwick's discovery of the neutron."],
+["Radioactive decay","Random. Activity is measured in becquerels (Bq); count rate is measured with a Geiger-Müller tube."],
+["Alpha","Two protons and two neutrons (a helium nucleus). Stopped by paper, travels a few centimetres in air, strongly ionising."],
+["Beta","A fast electron from the nucleus, made when a neutron turns into a proton. Stopped by a few millimetres of aluminium."],
+["Gamma","Electromagnetic radiation from the nucleus. Reduced by thick lead or concrete; weakly ionising."],
+["Nuclear equations","Alpha: mass number −4, atomic number −2. Beta: mass number unchanged, atomic number +1. Gamma: no change to either."],
+["Half-life","The time for the number of unstable nuclei, or the activity, to halve."],
+["Contamination and irradiation","Contamination means radioactive atoms are on or inside something. Irradiation means exposure to radiation; the object doesn't become radioactive."],
+["Background radiation","From natural sources (rocks, cosmic rays) and human ones (fallout, nuclear accidents). Dose is measured in sieverts.",1],
+["Medical uses","Gamma-emitting tracers with short half-lives for imaging; radiotherapy to destroy tumours.",1],
+["Fission and fusion","Fission: a nucleus such as uranium-235 absorbs a neutron and splits into two smaller nuclei, releasing 2 or 3 neutrons, gamma rays and energy, which can cause a chain reaction. Fusion: two light nuclei join, releasing energy, as in stars.",1]],
+q:[["What fraction of a radioactive sample remains after two half-lives?",["½","¼","⅛","0"],1,"½ × ½ = ¼."],
+["Which radiation is stopped by a sheet of paper?",["Alpha","Beta","Gamma","All three"],0,"Alpha particles are large and strongly ionising, so they lose energy quickly."]]},
+
+{n:"4.5",t:"Forces",p:2,big:"Forces change how things move and change their shape. Newton's laws tie it all together.",
+k:[["Scalars and vectors","Scalars have size only (speed, distance, mass). Vectors have size and direction (velocity, displacement, force)."],
+["Contact and non-contact forces","Contact: friction, air resistance, tension, normal contact. Non-contact: gravity, magnetic and electrostatic forces."],
+["Weight","Weight = mass × gravitational field strength; g is about 9.8 N/kg on Earth."],
+["Resultant force","A single force with the same effect as all the forces acting. HT: forces can be resolved into components."],
+["Elasticity","Hooke's law: extension is proportional to force, up to the limit of proportionality."],
+["Motion graphs","Gradient of distance–time = speed. Gradient of velocity–time = acceleration; HT: area under velocity–time = distance."],
+["Newton's laws","First: with no resultant force, an object stays still or keeps a constant velocity. Second: F = ma. Third: when two objects interact, they exert equal and opposite forces on each other."],
+["Terminal velocity","As a falling object speeds up, drag increases until it equals weight, so the object stops accelerating."],
+["Stopping distance","Thinking distance + braking distance. Reaction time is typically 0.2 to 0.9 s, worse with tiredness, drugs, alcohol and distractions. Braking distance increases with speed, wet or icy roads and worn tyres or brakes."],
+["Momentum (HT)","p = mv. In a closed system, total momentum before equals total momentum after."],
+["Moments","Moment = force × perpendicular distance from the pivot. Balanced when clockwise moments equal anticlockwise moments. Levers and gears transmit turning effects.",1],
+["Pressure in fluids","p = F ÷ A. Pressure in a liquid increases with depth and density (HT: p = hρg). Upthrust exists because pressure is greater lower down. Atmospheric pressure decreases with height.",1],
+["Changes in momentum (HT)","Force equals rate of change of momentum. Air bags, seat belts and crumple zones increase the time of impact, reducing the force.",1]],
+eq:[["W = mg","Weight (N)."],["W = Fs","Work done (J) = force × distance moved along the force."],["F = ke","Force on a spring; k in N/m."],["s = vt","Distance = speed × time."],["a = Δv ÷ t","Acceleration in m/s²."],["v² − u² = 2as","For uniform acceleration."],["F = ma","Newton's second law."],["p = mv","Momentum in kg m/s (HT)."],["M = Fd","Moment in N m.",1],["p = F ÷ A","Pressure in Pa.",1],["p = hρg","Pressure from a column of liquid (HT).",1],["F = mΔv ÷ Δt","Force and change in momentum (HT).",1]],
+rp:[["Force and extension: investigating a spring"],["Acceleration: effect of force and of mass"]],
+q:[["What resultant force makes a 1200 kg car accelerate at 2 m/s²?",["600 N","1202 N","2400 N","24 000 N"],2,"F = ma = 1200 × 2 = 2400 N."],
+["A 20 N force acts 0.5 m from a pivot. What is the moment?",["10 N m","40 N m","20.5 N m","0.025 N m"],0,"M = Fd = 20 × 0.5 = 10 N m."]]},
+
+{n:"4.6",t:"Waves",p:2,big:"Waves carry energy without carrying matter, from ripples and sound to the whole electromagnetic spectrum.",
+k:[["Transverse and longitudinal","Transverse: oscillations perpendicular to energy transfer (water ripples, EM waves). Longitudinal: oscillations parallel, with compressions and rarefactions (sound)."],
+["Describing waves","Amplitude, wavelength, frequency (Hz) and period. Waves transfer energy, not the medium itself."],
+["Reflection and refraction","At a boundary waves can be reflected, refracted, transmitted or absorbed. Refraction happens because the wave changes speed; slowing down bends it towards the normal."],
+["Electromagnetic spectrum","Radio, microwaves, infrared, visible light, ultraviolet, X-rays, gamma rays: wavelength decreases and frequency increases along the list. All are transverse and travel at the same speed in a vacuum."],
+["Uses","Radio: TV and radio. Microwaves: satellite communication and cooking. Infrared: heaters, cameras. Visible light: fibre optics. Ultraviolet: energy-efficient lamps, sun tanning. X-rays and gamma: medical imaging and treatment."],
+["Hazards","Ultraviolet ages skin and increases the risk of skin cancer. X-rays and gamma are ionising and can cause mutations and cancer."],
+["Infrared emission","All bodies emit and absorb infrared. Matt black surfaces are the best emitters and absorbers."],
+["Sound and ultrasound","Human hearing is about 20 Hz to 20 kHz. Ultrasound is above 20 kHz and is used for medical and industrial imaging. P seismic waves are longitudinal and travel through solids and liquids; S waves are transverse and can't pass through liquids, which is evidence for Earth's liquid outer core.",1],
+["Lenses","Convex lenses focus light and can form real or virtual images; concave lenses spread it out and form virtual images.",1],
+["Visible light","An object's colour depends on which wavelengths it reflects. Filters transmit only certain colours. Smooth surfaces give specular reflection; rough ones give diffuse reflection.",1],
+["Black body radiation","A perfect black body absorbs all radiation and is the best emitter. Hotter objects emit more radiation at shorter wavelengths. Earth's temperature depends on the balance of radiation absorbed and emitted.",1]],
+eq:[["v = fλ","Wave speed (m/s) = frequency (Hz) × wavelength (m)."],["T = 1 ÷ f","Period in seconds."],["magnification = image height ÷ object height","No units.",1]],
+rp:[["Waves: measuring wave speed with a ripple tank and a vibrating string"],["Infrared radiation: how surface type affects emission"],["Light: reflection and refraction through different substances",1]],
+q:[["A wave has frequency 50 Hz and wavelength 2 m. What is its speed?",["25 m/s","52 m/s","100 m/s","0.04 m/s"],2,"v = fλ = 50 × 2 = 100 m/s."],
+["Which electromagnetic wave has the longest wavelength?",["Gamma","Visible light","Radio","Microwaves"],2,"Radio waves are at the long-wavelength, low-frequency end of the spectrum."]]},
+
+{n:"4.7",t:"Magnetism and electromagnetism",p:2,big:"Magnets and currents produce forces on each other. That's how motors, speakers and generators work.",
+k:[["Magnetic poles","Like poles repel, unlike poles attract. Permanent magnets make their own field; induced magnets only become magnetic in a field and are always attracted."],
+["Magnetic fields","Field lines go from north to south and are closest together at the poles. A compass shows field direction. Earth has its own magnetic field."],
+["Current and fields","A current in a wire makes a circular field around it. A solenoid's field is like a bar magnet's; an iron core makes a stronger electromagnet."],
+["Motor effect (HT)","A current-carrying wire in a magnetic field feels a force, with direction given by Fleming's left-hand rule."],
+["Electric motors","Forces on opposite sides of a coil make it rotate. A split-ring commutator reverses the current every half turn to keep it spinning."],
+["Loudspeakers","A changing current in a coil in a magnetic field makes the cone vibrate, producing sound.",1],
+["Generator effect (HT)","Moving a wire relative to a magnetic field induces a potential difference. Alternators produce a.c. using slip rings; dynamos produce d.c. using a split ring. Microphones use the same effect.",1],
+["Transformers (HT)","Two coils on an iron core. Step-up transformers have more turns on the secondary coil; step-down have fewer.",1]],
+eq:[["F = BIl","Force (N) = magnetic flux density (T) × current (A) × length (m). HT."],["Vₚ ÷ Vₛ = nₚ ÷ nₛ","Transformer turns ratio (HT).",1],["VₚIₚ = VₛIₛ","For a 100% efficient transformer (HT).",1]],
+q:[["Which change makes an electromagnet stronger?",["Using fewer turns","Adding an iron core","Reducing the current","Using a plastic core"],1,"An iron core concentrates the field. More turns and more current also help."],
+["A transformer has 200 primary turns at 230 V and 20 secondary turns. What is the output p.d.?",["2300 V","23 V","11.5 V","46 V"],1,"Vₛ = 230 × 20 ÷ 200 = 23 V."]]},
+
+{n:"4.8",t:"Space physics",p:2,tri:1,big:"This whole topic is only on the separate Physics course: the solar system, the life of stars, orbits and the expanding universe.",
+k:[["The solar system","One star (the Sun), eight planets, dwarf planets, natural satellites (moons) and artificial satellites, all in the Milky Way galaxy."],
+["Star formation","A cloud of dust and gas (nebula) is pulled together by gravity into a protostar. When fusion starts it becomes a main sequence star, stable because outward pressure from fusion balances gravity."],
+["Life cycle of stars","A star like the Sun: main sequence → red giant → white dwarf → black dwarf. Much bigger stars: red supergiant → supernova → neutron star or black hole."],
+["Making elements","Fusion in stars makes elements up to iron. Heavier elements form in supernovae, which spread them through the universe."],
+["Orbits","Gravity keeps planets and satellites in orbit. In a circular orbit speed is constant but velocity keeps changing, because direction changes. HT: if speed changes, the orbit radius must change."],
+["Red-shift","Light from distant galaxies is shifted to longer wavelengths. The further away a galaxy is, the bigger its red-shift, so the universe is expanding."],
+["The Big Bang","The universe began from a very small, extremely hot and dense region. Red-shift supports this."],
+["Unanswered questions","Observations suggest dark matter and dark energy, which scientists don't yet fully understand."]],
+q:[["What does a star the size of the Sun become after its red giant stage?",["A neutron star","A black hole","A white dwarf","A supernova"],2,"It sheds its outer layers and the core becomes a white dwarf, which cools to a black dwarf."],
+["What does red-shift tell us about the universe?",["It's shrinking","It's expanding","It's not moving","It's made of hydrogen"],1,"More distant galaxies recede faster, which fits an expanding universe."]]}
+]},
+
+history:{name:"History",eqTitle:"Key dates",
+opt:"AQA History (8145). Schools choose one option in each of four sections. These notes cover four of the most popular: Germany 1890–1945, Conflict and tension 1918–1939, Health and the people, and Elizabethan England. If your school studies different options, check with your teacher which units apply to you.",
+topics:[
+{n:"1A",t:"Germany, 1890–1945: Democracy and dictatorship",p:1,big:"How Germany went from an empire under the Kaiser, through a troubled democracy, to Hitler's dictatorship, and what life was like for Germans under the Nazis.",
+k:[["Kaiser Wilhelm II","Ruled with great personal power. Prussia dominated Germany and the army had high status (militarism). Rapid industrialisation grew the working class, and the socialist SPD was the largest party in the Reichstag by 1912."],
+["Weltpolitik and the navy","Wilhelm wanted an overseas empire and a navy to rival Britain's. The Navy Laws from 1898 raised taxes and increased tension with Britain."],
+["Impact of the First World War","The British naval blockade caused severe food shortages. Unrest and revolution spread in 1918. The Kaiser abdicated in November 1918 and the new republic signed the armistice."],
+["The Weimar Constitution","Proportional representation gave seats to many small parties, so governments were unstable coalitions. Article 48 let the president rule by decree in an emergency."],
+["The Treaty of Versailles","War guilt (Article 231), reparations (set at £6,600 million in 1921), an army of 100,000, no air force, a demilitarised Rhineland, and loss of land and colonies. Many Germans called it a Diktat and blamed the politicians who signed it, the “November Criminals”."],
+["Political violence","The left-wing Spartacist uprising (1919) was crushed by the Freikorps. The right-wing Kapp Putsch (1920) collapsed after a general strike. Hitler's Munich Putsch (1923) failed; in prison he wrote Mein Kampf."],
+["The 1923 crisis","Germany missed reparations payments, so France and Belgium occupied the Ruhr. The government paid striking workers by printing money, causing hyperinflation. Savings became worthless, hitting the middle classes hardest."],
+["The Stresemann years, 1924–1929","The Rentenmark stabilised the currency. The Dawes Plan (1924) brought US loans and rescheduled reparations; the Young Plan (1929) reduced them. Germany signed the Locarno Pact (1925) and joined the League of Nations (1926). Culture flourished and women gained new freedoms, but recovery depended on American loans."],
+["The Nazi rise to power","After the 1929 Wall Street Crash, US loans were recalled and unemployment reached about 6 million by 1932. The Nazis offered simple solutions, used propaganda and the SA, and became the largest party in July 1932. A deal involving von Papen and President Hindenburg made Hitler Chancellor in January 1933."],
+["Building a dictatorship","After the Reichstag fire, communists were arrested under emergency powers. The Enabling Act let Hitler make laws without the Reichstag. Trade unions and other parties were banned. The Night of the Long Knives removed Röhm and the SA leadership. When Hindenburg died, Hitler became Führer and the army swore an oath to him."],
+["The police state and propaganda","The SS (led by Himmler), the Gestapo, concentration camps and Nazi-controlled courts created fear. Goebbels controlled newspapers, radio, film and rallies, and used the 1936 Olympics as propaganda. The Concordat (1933) was an agreement with the Catholic Church; Pastor Niemöller's Confessing Church opposed Nazi control of Protestants."],
+["Life in Nazi Germany","Women were encouraged to focus on children, cooking and church, with marriage loans and the Mother's Cross. Young people joined the Hitler Youth or League of German Maidens, and the curriculum was Nazified. Unemployment fell through the Reich Labour Service, autobahns and rearmament, but trade unions were replaced by the German Labour Front. Strength Through Joy offered leisure activities."],
+["Persecution","Jews, Roma, disabled people, homosexuals and others were persecuted. A boycott of Jewish shops (1933), the Nuremberg Laws (1935) removing citizenship, and Kristallnacht (1938) led on to ghettos and the Holocaust, organised at the Wannsee Conference (1942)."],
+["Germany at war","Rationing began in 1939 and “total war” was declared in 1943. Allied bombing devastated cities. Opposition included the White Rose group, the Edelweiss Pirates and the July Bomb Plot of 1944."]],
+eq:[["1888","Wilhelm II becomes Kaiser"],["1898","First Navy Law"],["Nov 1918","Kaiser abdicates; armistice signed"],["Jan 1919","Spartacist uprising"],["June 1919","Treaty of Versailles signed"],["Mar 1920","Kapp Putsch"],["1923","Ruhr occupied; hyperinflation; Munich Putsch"],["1924","Dawes Plan"],["1929","Young Plan; Wall Street Crash"],["Jan 1933","Hitler appointed Chancellor"],["Mar 1933","Enabling Act"],["June 1934","Night of the Long Knives"],["Aug 1934","Hindenburg dies; Hitler becomes Führer"],["1935","Nuremberg Laws"],["Nov 1938","Kristallnacht"],["July 1944","July Bomb Plot"]],
+q:[["What did the Enabling Act of 1933 allow Hitler to do?",["Become President","Make laws without the Reichstag","Ban the SS","Leave the League of Nations"],1,"The Enabling Act gave Hitler's government the power to pass laws without the Reichstag, the key legal step to dictatorship."],
+["Why did hyperinflation happen in 1923?",["The Wall Street Crash","The government printed money to pay striking workers in the Ruhr","Stresemann introduced the Rentenmark","The Dawes Plan"],1,"With the Ruhr occupied and output collapsing, printing money to pay workers made it lose value rapidly."]]},
+
+{n:"1B",t:"Conflict and tension, 1918–1939",p:1,big:"How the peace settlement after the First World War, the failure of the League of Nations and Hitler's foreign policy led to the Second World War.",
+k:[["The Big Three's aims","Clemenceau (France) wanted a harsh peace for security and revenge. Wilson (USA) wanted a fairer peace based on his Fourteen Points, self-determination and a League of Nations. Lloyd George (Britain) wanted Germany punished, but not so harshly that it would seek revenge, and wanted to protect Britain's navy and empire."],
+["Reactions to Versailles","Germans resented war guilt, reparations and lost land. Clemenceau's critics thought it too soft, while many in Britain and the USA later thought it too harsh."],
+["Other treaties","Saint-Germain (Austria), Trianon (Hungary), Neuilly (Bulgaria) and Sèvres (Turkey)."],
+["The League of Nations","Set up in 1920 and based in Geneva, with an Assembly, a Council, a Court of International Justice and agencies. It relied on collective security, moral pressure and economic sanctions."],
+["Weaknesses of the League","The USA never joined. Germany and the USSR were left out at first. It had no army of its own, decisions needed unanimous agreement, and it was slow to act."],
+["The 1920s","Successes included the Aaland Islands (1921) and the Bulgarian crisis (1925), plus humanitarian work on refugees and disease. In the Corfu crisis (1923), Mussolini pressured the League into making Greece pay compensation."],
+["Manchuria, 1931","Japan invaded Manchuria. The League's Lytton Report condemned Japan, which simply left the League in 1933."],
+["Abyssinia, 1935","Italy invaded Abyssinia. Sanctions didn't include oil and the Suez Canal stayed open. The secret Hoare–Laval Pact proposed giving Italy much of Abyssinia. The crisis destroyed the League's credibility."],
+["Hitler's aims","Overturn the Treaty of Versailles, unite German-speaking people, gain Lebensraum (living space) in the east, and defeat communism."],
+["Hitler's actions","Rearmament and conscription (1935), remilitarising the Rhineland (1936), Anschluss with Austria (1938), the Sudetenland (1938), the rest of Czechoslovakia (March 1939), the Nazi–Soviet Pact (August 1939) and the invasion of Poland (September 1939)."],
+["Appeasement","Chamberlain gave in to Hitler's demands to avoid war. Supporters: fear of another war, Britain wasn't ready, many felt Versailles was unfair, and fear of communism. Critics: it encouraged Hitler, gave him time to grow stronger and betrayed Czechoslovakia."]],
+eq:[["June 1919","Treaty of Versailles signed"],["Jan 1920","League of Nations first meets"],["1923","Corfu crisis"],["1931","Japan invades Manchuria"],["1933","Japan and Germany leave the League"],["1935","German conscription; Italy invades Abyssinia"],["Mar 1936","Rhineland remilitarised"],["Mar 1938","Anschluss with Austria"],["Sept 1938","Munich Agreement"],["Mar 1939","Germany takes the rest of Czechoslovakia"],["Aug 1939","Nazi–Soviet Pact"],["1 Sept 1939","Germany invades Poland"],["3 Sept 1939","Britain and France declare war"]],
+q:[["Which major power never joined the League of Nations?",["Britain","France","USA","Italy"],2,"The US Senate refused to join, which weakened the League's authority and its sanctions."],
+["What did the Munich Agreement (1938) give Hitler?",["Austria","Poland","The Sudetenland","The Rhineland"],2,"Britain, France and Italy agreed Germany could take the Sudetenland from Czechoslovakia."]]},
+
+{n:"2A",t:"Health and the people, c1000 to the present",p:2,big:"How ideas about the causes of disease, treatments, surgery and public health changed over a thousand years, and what drove those changes.",
+k:[["Medieval ideas","Disease was blamed on God, the Four Humours (from Hippocrates and Galen), miasma (bad air) and astrology. Treatments included prayer, bloodletting, purging and herbal remedies. The Church controlled learning, so Galen's ideas went unchallenged."],
+["Medieval care","Hospitals, often run by monasteries, focused on care rather than cure. Physicians, barber surgeons, apothecaries and wise women all treated the sick."],
+["The Black Death, 1348","People responded with prayer, flagellation, fleeing and herbal remedies, because nobody understood the real cause."],
+["The Renaissance","The printing press spread new ideas. Vesalius corrected Galen through dissection (1543). Paré used ligatures and a soothing ointment instead of cauterising wounds. Harvey proved the blood circulates (1628). Everyday treatments changed little at first."],
+["The Great Plague, 1665","London used quarantine, closed theatres and killed cats and dogs. Ideas about cause were still based on miasma and God."],
+["Vaccination","Jenner used cowpox to protect against smallpox (1796). He couldn't explain why it worked, which fuelled opposition, but vaccination was made compulsory in 1853."],
+["Germ theory","Pasteur showed that microbes cause decay (1861). Koch identified the bacteria causing specific diseases, including TB (1882) and cholera (1883)."],
+["Surgery","Pain: Simpson discovered chloroform as an anaesthetic (1847). Infection: Lister used carbolic acid as an antiseptic (1867). Bleeding: Landsteiner's discovery of blood groups (1901) made transfusions safer."],
+["Public health","John Snow linked cholera to a water pump in Broad Street (1854). The Great Stink (1858) led to Bazalgette's sewers. The 1848 Public Health Act was voluntary; the 1875 Act was compulsory."],
+["Nursing","Florence Nightingale improved hygiene in the Crimean War and set up a nursing school (1860). Mary Seacole also cared for soldiers in the Crimea."],
+["Magic bullets and antibiotics","Ehrlich developed Salvarsan 606 (1909). Fleming discovered penicillin (1928). Florey and Chain developed it, and mass production began during the Second World War with US help."],
+["Government and the NHS","Liberal reforms (1906–1911) included free school meals and National Insurance. The Beveridge Report (1942) named five giant evils. Aneurin Bevan launched the NHS on 5 July 1948, free at the point of use."],
+["Modern medicine","Crick and Watson, using Rosalind Franklin's X-ray work, described the structure of DNA (1953). Developments since include transplants, keyhole surgery, the Human Genome Project and campaigns on lifestyle, such as the 2007 smoking ban in public places."]],
+eq:[["1348","Black Death reaches England"],["1543","Vesalius publishes The Fabric of the Human Body"],["1628","Harvey publishes on circulation of the blood"],["1665","Great Plague of London"],["1796","Jenner's smallpox vaccination"],["1847","Simpson uses chloroform"],["1854","John Snow and the Broad Street pump"],["1858","The Great Stink"],["1861","Pasteur's germ theory"],["1867","Lister's carbolic acid antiseptic"],["1875","Public Health Act"],["1928","Fleming discovers penicillin"],["1942","Beveridge Report"],["1948","NHS founded"],["1953","Structure of DNA described"]],
+q:[["Who discovered penicillin in 1928?",["Pasteur","Fleming","Lister","Jenner"],1,"Fleming noticed mould killing bacteria. Florey and Chain later turned it into a usable drug."],
+["What did John Snow show in 1854?",["Cholera was spread by bad air","Cholera was spread by contaminated water","Smallpox could be prevented by cowpox","Germs cause decay"],1,"Snow mapped deaths around the Broad Street pump and removed its handle, linking cholera to water."]]},
+
+{n:"2B",t:"Elizabethan England, c1568–1603",p:2,big:"Elizabeth I's government, the threats she faced from Catholics and Spain, and life in what's often called a golden age.",
+k:[["Elizabeth's position","Queen from 1558, Protestant and unmarried. Many Catholics didn't accept her as legitimate, and her marriage and the succession were constant worries."],
+["Court and government","The Privy Council advised her, including William Cecil (Lord Burghley), Francis Walsingham (her spymaster) and Robert Dudley (Earl of Leicester). She used patronage to keep loyalty."],
+["Parliament","Raised taxes and passed laws. It clashed with Elizabeth over her marriage, the succession and Puritan demands for further religious reform."],
+["The Essex Rebellion","Robert Devereux, Earl of Essex, was a favourite who failed in Ireland, lost favour, led a rebellion in 1601 and was executed."],
+["The Religious Settlement, 1559","The Act of Supremacy made Elizabeth Supreme Governor of the Church. The Act of Uniformity set out the Book of Common Prayer. Recusants who didn't attend church were fined."],
+["The Catholic threat","Mary, Queen of Scots arrived in England in 1568. The Revolt of the Northern Earls (1569) failed, and the Pope excommunicated Elizabeth (1570). The Ridolfi (1571), Throckmorton (1583) and Babington (1586) plots aimed to put Mary on the throne. Mary was executed in 1587. Jesuit priests were hunted down."],
+["Puritans","Wanted to remove remaining Catholic practices from the Church. Archbishop Whitgift cracked down on them in the 1580s."],
+["War with Spain","Religion, trade rivalry, English support for Dutch rebels (Treaty of Nonsuch, 1585) and Drake's raids, including Cadiz (1587), led to war."],
+["The Spanish Armada, 1588","English fireships broke the Spanish formation at Calais, followed by the Battle of Gravelines. Storms wrecked many ships as they sailed home around Scotland and Ireland."],
+["A golden age?","Theatre flourished, including the Globe (1599), Shakespeare and Marlowe. The gentry built grand houses such as Hardwick Hall, and education spread through grammar schools."],
+["Poverty","Population growth, rising prices, enclosure and bad harvests increased poverty. Vagabonds were feared and punished. The Poor Laws, ending with the 1601 Act, made each parish responsible for its poor."],
+["Exploration","Better navigation helped Drake sail around the world (1577–1580). Raleigh's colony at Roanoke (1585) failed."],
+["Historic environment for 2028: Kenilworth Castle","AQA changes the set site every year; for exams in summer 2028 it's Kenilworth Castle in Warwickshire. Elizabeth granted it to Robert Dudley, Earl of Leicester, in 1563. He spent heavily turning it into a luxurious palace, with new apartments and gardens, to impress the Queen. Her 19-day visit in 1575, with lavish entertainments, is often seen as his last attempt to persuade her to marry him. Use the AQA resource pack your teacher gives you."]],
+eq:[["1558","Elizabeth becomes queen"],["1559","Religious Settlement"],["1568","Mary, Queen of Scots arrives in England"],["1569","Revolt of the Northern Earls"],["1570","Elizabeth excommunicated"],["1571","Ridolfi Plot"],["1577–1580","Drake sails around the world"],["1583","Throckmorton Plot"],["1585","Treaty of Nonsuch; Roanoke colony"],["1586","Babington Plot"],["1587","Mary, Queen of Scots executed"],["1588","Spanish Armada"],["1601","Poor Law; Essex Rebellion"],["1603","Elizabeth dies"]],
+q:[["In which year did the Spanish Armada sail?",["1568","1587","1588","1601"],2,"The Armada sailed in 1588, the year after Mary, Queen of Scots was executed."],
+["Which plot led directly to Mary, Queen of Scots' execution?",["Ridolfi","Throckmorton","Babington","Gunpowder"],2,"Walsingham intercepted Mary's letters approving the Babington Plot, giving the evidence to try her."]]},
+
+{n:"Skills",t:"History exam skills",p:"Papers 1 and 2",big:"Knowing the content is only half of it. These are the question types AQA uses and how to answer them.",
+k:[["Interpretations","Some questions give you views from historians or later writers. You may be asked how they differ, why they differ (who wrote them, when and why), and which is more convincing using your own knowledge."],
+["Source usefulness","Judge a source on its content (what it tells you), its provenance (who made it, when and why) and how it fits with your own knowledge of the context. A biased source can still be useful."],
+["Describe questions","Give two features, each with a specific supporting detail such as a date, name or fact."],
+["Explain questions","Give clear reasons and explain how each one led to the outcome. Link every paragraph back to the question."],
+["Write an account","Tell the story of how events connected and led to an outcome. Keep it in order, but show cause and consequence rather than just listing what happened."],
+["Essay questions","For “how far do you agree” questions, argue both sides with evidence, then reach a clear, supported judgement. Some longer answers also reward spelling, punctuation and grammar."],
+["Timing","A common rule is to spend about a minute per mark, leaving time to check the longest answers."]],
+q:[["What does “provenance” mean when judging a source?",["How old the source is","Who made it, when and why","How long it is","Whether it's a picture or text"],1,"Provenance is the origin of a source: its author, date and purpose."],
+["What makes a strong “how far do you agree” answer?",["Only arguing one side","Listing every fact you know","Arguing both sides and reaching a supported judgement","Writing as much as possible"],2,"Examiners reward balanced analysis that ends in a clear judgement backed by evidence."]]}
+]},
+
+geography:{name:"Geography",eqTitle:"Key terms",
+opt:"AQA Geography (8035). Some units have options, and schools choose their own case studies. These notes cover hot deserts, coasts and rivers, and water, with commonly used case studies. Learn the case studies your teacher gives you if they're different.",
+topics:[
+{n:"3.1.1",t:"The challenge of natural hazards",p:1,big:"Earthquakes, volcanoes, tropical storms, UK weather and climate change: what causes them, their effects, and how people reduce the risk.",
+k:[["Hazard risk","The probability of a natural hazard affecting people. Risk rises with urbanisation, poverty and farming in hazardous areas."],
+["Plate tectonics","The crust is split into plates moved by convection currents in the mantle. At destructive margins an oceanic plate sinks under a continental plate, causing earthquakes and explosive volcanoes. At constructive margins plates move apart. At conservative margins plates slide past each other, causing earthquakes."],
+["Effects and responses","Primary effects are caused directly by the hazard; secondary effects follow later, such as fires, disease and tsunamis. Responses are immediate (rescue, shelter) or long-term (rebuilding, improving building codes)."],
+["Contrasting earthquakes","Chile 2010 (higher income): magnitude 8.8, around 500 deaths, quick national response and strict building codes. Nepal 2015 (lower income): magnitude 7.8, around 9,000 deaths, landslides, and heavy reliance on international aid.","cs"],
+["Living with tectonic hazards","People stay for fertile volcanic soils, geothermal energy, tourism, minerals and family ties. Risk is reduced by monitoring, prediction, protection (earthquake-resistant buildings) and planning."],
+["Global atmospheric circulation","Three cells in each hemisphere (Hadley, Ferrel and Polar) create belts of high and low pressure and the planet's surface winds."],
+["Tropical storms","Form over oceans of at least 27 °C, roughly 5° to 30° from the equator, and spin because of the Coriolis effect. They have a calm eye surrounded by an eyewall of the strongest winds. Climate change may make them more intense."],
+["Typhoon Haiyan, 2013","Hit the Philippines; one of the strongest storms ever recorded. A huge storm surge flooded coastal areas, around 6,300 people died, and millions were displaced.","cs"],
+["UK weather hazards","Including heavy rain and flooding, drought, snow and heatwaves. The Somerset Levels floods of 2014 are a common example of an extreme weather event in the UK.","cs"],
+["Climate change","Evidence: ice cores, temperature records, sea-level rise and shrinking glaciers. Natural causes: orbital changes, solar output and volcanic eruptions. Human causes: burning fossil fuels, agriculture and deforestation."],
+["Managing climate change","Mitigation reduces the causes: renewable energy, carbon capture, planting trees and international agreements. Adaptation copes with the effects: changing farming, managing water supply and coping with rising sea levels."]],
+eq:[["Natural hazard","A natural event that threatens people or property."],["Primary effect","An immediate effect caused directly by the hazard."],["Secondary effect","An effect that results from the primary effects."],["Mitigation","Action to reduce the causes of climate change."],["Adaptation","Action to cope with the effects of climate change."]],
+q:[["At which type of plate margin do plates move apart?",["Destructive","Constructive","Conservative","Collision"],1,"At constructive margins plates move apart and magma rises to fill the gap."],
+["What minimum sea temperature do tropical storms need?",["17 °C","22 °C","27 °C","35 °C"],2,"Warm ocean water of at least 27 °C provides the heat and moisture that power the storm."]]},
+
+{n:"3.1.2",t:"The living world",p:1,big:"Ecosystems from a UK pond to tropical rainforests and hot deserts: how they work, how people use them, and how they can be managed sustainably.",
+k:[["Ecosystems","Living (biotic) and non-living (abiotic) parts interact. Producers, consumers and decomposers form food chains and webs, and nutrients are recycled. A change to one part affects the rest."],
+["Tropical rainforests","Hot (around 27 °C) and wet (over 2,000 mm of rain a year), with layers from the emergents to the shrub layer. Soils are nutrient-poor because nutrients are taken up quickly and washed away by heavy rain. Plants adapt with buttress roots, drip tips and climbing lianas."],
+["Causes of deforestation","Subsistence and commercial farming, logging, road building, mining, energy projects, settlement and population growth."],
+["The Amazon","Cattle ranching is the biggest cause of deforestation in the Brazilian Amazon. Deforestation brings jobs and income but causes soil erosion, loss of biodiversity and contributes to climate change.","cs"],
+["Sustainable rainforest management","Selective logging and replanting, conservation and education, ecotourism, international agreements on hardwoods, and debt reduction."],
+["Hot deserts","Less than 250 mm of rain a year, very hot days and cold nights. Cacti store water and have spines, long roots and waxy skin; camels store fat and have wide feet and long eyelashes."],
+["The Sahara","Opportunities include mineral extraction, solar energy, farming with irrigation and tourism. Challenges include extreme temperatures, water supply and inaccessibility.","cs"],
+["Desertification","Land becomes desert-like because of climate change, population growth, overgrazing, over-cultivation and removing wood for fuel. Reduced by water and soil management, planting trees and using appropriate technology."]],
+eq:[["Biodiversity","The variety of life in an area."],["Nutrient cycling","The movement of nutrients between living things, litter and soil."],["Deforestation","The removal of trees from forested land."],["Desertification","The spread of desert-like conditions in dry areas."]],
+q:[["What annual rainfall defines a hot desert?",["Under 250 mm","Under 1,000 mm","Under 2,000 mm","Over 2,000 mm"],0,"Hot deserts receive less than 250 mm of rain a year."],
+["What is the biggest cause of deforestation in the Brazilian Amazon?",["Tourism","Cattle ranching","Hydroelectric dams","Mining"],1,"Clearing land for cattle pasture accounts for most forest loss in the Amazon."]]},
+
+{n:"3.1.3a",t:"Coastal landscapes in the UK",p:1,big:"How waves shape the coast through erosion and deposition, and how we choose whether and how to defend it.",
+k:[["Waves","Destructive waves have a strong backwash and erode the coast. Constructive waves have a strong swash and build up beaches."],
+["Processes","Weathering: freeze–thaw, chemical and biological. Mass movement: sliding, slumping and rock falls. Erosion: hydraulic power, abrasion, attrition and solution. Longshore drift moves sediment along the coast in a zigzag."],
+["Erosional landforms","Headlands and bays form where hard and soft rocks alternate. Cliffs retreat and leave wave-cut platforms. A crack grows into a cave, then an arch, then a stack, then a stump."],
+["Depositional landforms","Beaches, sand dunes, spits (formed by longshore drift where the coast changes direction) and bars."],
+["Old Harry Rocks, Dorset","A well-known example of chalk stacks and stumps on a headland near Swanage.","cs"],
+["Hard engineering","Sea walls, groynes, rock armour and gabions. Effective but expensive, and they can affect other parts of the coast."],
+["Soft engineering","Beach nourishment and reprofiling, and dune regeneration. Cheaper and more natural but needs regular maintenance."],
+["Managed retreat","Letting the sea flood low-value land to create salt marshes that absorb wave energy."],
+["The Holderness coast","One of the fastest-eroding coastlines in Europe, made of soft boulder clay. Mappleton was protected in 1991 with rock armour and rock groynes, but erosion increased further south.","cs"]],
+eq:[["Longshore drift","Movement of sediment along the coast by waves."],["Hard engineering","Artificial structures that control natural processes."],["Soft engineering","Working with natural processes to manage the coast."],["Managed retreat","Allowing the coastline to move back in a controlled way."]],
+q:[["What comes after an arch in the erosion sequence?",["Cave","Crack","Stack","Spit"],2,"The arch roof collapses, leaving a stack, which erodes into a stump."],
+["Which is a soft engineering method?",["Sea wall","Rock armour","Beach nourishment","Groynes"],2,"Beach nourishment adds sand to a beach to absorb wave energy, working with natural processes."]]},
+
+{n:"3.1.3b",t:"River landscapes in the UK",p:1,big:"How rivers shape valleys from source to mouth, why they flood, and how floods are managed.",
+k:[["Long and cross profiles","In the upper course the gradient is steep and the valley is narrow and V-shaped. Downstream the gradient becomes gentler, and the valley and channel get wider."],
+["Processes","Erosion: hydraulic action, abrasion, attrition and solution, working vertically and laterally. Transport: traction, saltation, suspension and solution. Deposition happens when the river slows."],
+["Upper course landforms","Interlocking spurs, waterfalls and gorges."],
+["Middle and lower course landforms","Meanders, oxbow lakes, floodplains, levees and estuaries."],
+["The River Tees","High Force waterfall in the upper course, meanders and oxbow lakes in the lower course, and an estuary at Middlesbrough.","cs"],
+["Hydrographs","Show discharge after rainfall. A short lag time and high peak discharge mean higher flood risk. Factors include heavy rain, impermeable geology, steep relief and urbanisation."],
+["Hard engineering","Dams and reservoirs, channel straightening, embankments and flood relief channels."],
+["Soft engineering","Flood warnings, preparation, floodplain zoning, planting trees and river restoration."],
+["Banbury flood scheme","An earth embankment created a flood storage area, with a raised road and a pumping station, protecting homes and businesses.","cs"]],
+eq:[["Discharge","The volume of water passing a point, in cubic metres per second."],["Lag time","Time between peak rainfall and peak discharge."],["Floodplain","Flat land beside a river that floods."],["Meander","A bend in a river."]],
+q:[["What landform forms when a meander is cut off?",["Levee","Oxbow lake","Gorge","Estuary"],1,"Erosion narrows the meander neck until the river cuts through, leaving the old bend as an oxbow lake."],
+["What is lag time?",["Time between peak rainfall and peak discharge","How long a flood lasts","Time for a river to reach the sea","Time between two floods"],0,"A shorter lag time means water reaches the river quickly, raising flood risk."]]},
+
+{n:"3.2.1",t:"Urban issues and challenges",p:2,big:"Why cities are growing so fast, the opportunities and problems this brings, and how cities can become more sustainable.",
+k:[["Urbanisation","An increase in the proportion of people living in towns and cities. It's fastest in lower income countries and newly emerging economies (NEEs), driven by rural–urban migration and natural increase."],
+["Megacities","Cities with over 10 million people."],
+["Rio de Janeiro","An NEE city that offers jobs, services and culture. Challenges include favelas (informal settlements), water supply, crime, pollution and traffic. The Favela Bairro Project improved housing, services and infrastructure.","cs"],
+["A UK city","Your school will study a city such as Bristol, London or Manchester. Learn its importance, the effects of migration, its opportunities and challenges, and a regeneration project.","cs"],
+["Urban change in the UK","Inequality and deprivation, building on brownfield or greenfield sites, dereliction, waste disposal and urban sprawl."],
+["Sustainable urban living","Water and energy conservation, recycling, creating green space and integrated public transport."]],
+eq:[["Urbanisation","Growth in the proportion of people living in urban areas."],["Megacity","A city of over 10 million people."],["Informal economy","Work not taxed or regulated by the government."],["Regeneration","Improving a run-down area."],["Brownfield site","Land that has been built on before."]],
+q:[["What population makes a city a megacity?",["Over 1 million","Over 5 million","Over 10 million","Over 50 million"],2,"A megacity has a population of over 10 million."],
+["What did the Favela Bairro Project do?",["Demolished all favelas","Improved housing and services in favelas","Built a new capital city","Moved people to rural areas"],1,"It upgraded existing favelas with services, infrastructure and better housing."]]},
+
+{n:"3.2.2",t:"The changing economic world",p:2,big:"Why countries are at different levels of development, how the gap can be reduced, and how economies like Nigeria's and the UK's are changing.",
+k:[["Measuring development","GNI per head, birth and death rates, infant mortality, literacy and life expectancy. The Human Development Index combines life expectancy, education and income."],
+["Demographic Transition Model","Shows how birth and death rates change as a country develops, from stage 1 (both high) to stage 5 (birth rate falls below death rate)."],
+["Causes of uneven development","Physical (climate, hazards, being landlocked), economic (poor trade links, debt, relying on primary products) and historical (colonialism)."],
+["Reducing the gap","Investment, industrial development, tourism, aid, intermediate technology, fair trade, debt relief and microfinance loans."],
+["Nigeria","An NEE and one of Africa's largest economies, with oil as a major export. TNCs such as Shell bring jobs and income but have caused oil spills in the Niger Delta. Aid helps with health and education.","cs"],
+["The UK economy","Deindustrialisation saw manufacturing decline. The post-industrial economy is based on services, finance, research and information technology, with science and business parks. There's a north–south divide in wealth."]],
+eq:[["HDI","Human Development Index: combines health, education and income."],["GNI per head","Gross national income divided by population."],["TNC","Transnational corporation: a company operating in many countries."],["Deindustrialisation","Decline of manufacturing industry."]],
+q:[["Which three things make up the Human Development Index?",["Population, area and GDP","Life expectancy, education and income","Birth rate, death rate and migration","Exports, imports and debt"],1,"HDI combines a long and healthy life, knowledge and a decent standard of living."],
+["What is deindustrialisation?",["Growth of factories","Decline of manufacturing industry","Moving to the countryside","Growth of farming"],1,"In the UK, manufacturing declined and services became the main source of jobs."]]},
+
+{n:"3.2.3",t:"The challenge of resource management",p:2,big:"Food, water and energy are unevenly spread. This topic looks at the UK's resources, then focuses on water: why supply is insecure and how it can be increased sustainably.",
+k:[["Global inequality","Food, water and energy are essential to development but unevenly distributed, and demand is rising."],
+["Food in the UK","Demand for seasonal food all year round and for organic produce. Food miles and the growth of agribusiness."],
+["Water in the UK","The north and west have a surplus; the south-east has a deficit. Water transfer schemes and managing pollution are key issues."],
+["Energy in the UK","Coal has declined, while gas and renewables have grown. Nuclear power and fracking are controversial."],
+["Water security","A water surplus, deficit or insecurity depends on climate, geology, pollution, over-abstraction, infrastructure and poverty."],
+["Increasing water supply","Diverting supplies and increasing storage, dams and reservoirs, water transfers and desalination."],
+["Lesotho Highland Water Project","A large-scale scheme transferring water from Lesotho to South Africa's Gauteng region. Lesotho earns income, but communities were displaced.","cs"],
+["Sustainable water use","Water conservation, groundwater management, recycling and grey water."],
+["Wakel River Basin, India","A local scheme in Rajasthan using rainwater harvesting and small dams to improve water supply.","cs"]],
+eq:[["Water security","Having enough reliable, safe water."],["Water stress","When demand for water exceeds supply."],["Food miles","The distance food travels from producer to consumer."],["Energy mix","The range of energy sources a country uses."]],
+q:[["Which part of the UK tends to have a water deficit?",["North-west","Scotland","South-east","Wales"],2,"The south-east has high demand and lower rainfall, so demand exceeds supply."],
+["Which is a large-scale water transfer scheme?",["Wakel River Basin","Lesotho Highland Water Project","Favela Bairro Project","Mappleton"],1,"It transfers water from Lesotho's highlands to South Africa."]]},
+
+{n:"3.3",t:"Geographical applications and skills",p:3,big:"Paper 3 tests how you apply geography: an issue evaluation, your own fieldwork, and practical skills.",
+k:[["Issue evaluation","AQA releases a resources booklet 12 weeks before Paper 3. Study it carefully: you'll analyse the issue, weigh up options and make a justified decision."],
+["Fieldwork","You need two enquiries in contrasting environments, one physical and one human."],
+["The enquiry process","Question or hypothesis, risk assessment, data collection, presentation, analysis, conclusion and evaluation. Sampling can be random, systematic or stratified."],
+["Map skills","Four- and six-figure grid references (along the corridor, then up the stairs), scale, contour lines and compass directions."],
+["Graphs and statistics","Choose suitable graphs and calculate mean, median, mode, range and percentages."]],
+eq:[["Mean","Total of values ÷ number of values."],["Range","Highest value − lowest value."],["Median","The middle value when data is in order."],["Primary data","Data you collect yourself."],["Secondary data","Data collected by someone else."]],
+q:[["How many fieldwork enquiries do you need?",["One","Two","Three","Four"],1,"Two enquiries in contrasting environments, one physical and one human."],
+["What is the range of 4, 9, 2, 7 and 6?",["5","6","7","2"],2,"Range = highest − lowest = 9 − 2 = 7."]]}
+]}
+
+};
+
+const ORDER = ["maths","english","biology","chemistry","physics","history","geography"];
+const KEY = "triple-sci-v1";
+const reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+function load(){ try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch(e){ return {}; } }
+function save(){ try { localStorage.setItem(KEY, JSON.stringify(store)); } catch(e){} }
+let store = load();
+store.done = store.done || {};
+let cur = { s: ORDER.includes(store.s) ? store.s : "maths", i: Number.isInteger(store.i) ? store.i : 0 };
+if(cur.i >= S[cur.s].topics.length) cur.i = 0;
+
+const isDone = (s,i) => !!store.done[s+":"+S[s].topics[i].n];
+const doneCount = s => S[s].topics.filter((_,i)=>isDone(s,i)).length;
+const note = f => { const l = f==="cs" ? "case study" : "triple only"; return `<span class="mnote" aria-hidden="true">${l}</span><span class="sr">${l}. </span>`; };
+
+function renderTabs(){
+  const t = document.getElementById("tabs");
+  t.innerHTML = ORDER.map(s=>`<button class="tab" role="tab" id="tab-${s}" aria-controls="paper" aria-selected="${s===cur.s}" tabindex="${s===cur.s?0:-1}" style="--c:var(--${s})"><b>${S[s].name}</b><small>${doneCount(s)} of ${S[s].topics.length} revised</small></button>`).join("");
+  t.querySelectorAll(".tab").forEach((b,idx)=>{
+    b.onclick = ()=>go(ORDER[idx], cur.s===ORDER[idx] ? cur.i : 0);
+    b.onkeydown = e=>{
+      if(e.key==="ArrowRight"||e.key==="ArrowLeft"){
+        e.preventDefault();
+        const n = (idx + (e.key==="ArrowRight"?1:-1) + ORDER.length) % ORDER.length;
+        go(ORDER[n], 0); document.getElementById("tab-"+ORDER[n]).focus();
+      }
+    };
+  });
+}
+
+function renderPaper(){
+  const s = cur.s, subj = S[s], tp = subj.topics[cur.i];
+  const paper = document.getElementById("paper");
+  paper.style.setProperty("--sub", `var(--${s})`);
+  paper.style.borderTop = `6px solid var(--${s})`;
+  paper.setAttribute("aria-labelledby","tab-"+s);
+  const chips = subj.topics.map((t,i)=>`<li><button class="chip" type="button" data-i="${i}" aria-current="${i===cur.i}"><span class="ref">${t.n}</span>${t.t}${isDone(s,i)?'<span class="done" aria-label="revised">✓</span>':""}</button></li>`).join("");
+  const ideas = tp.k.map(k=>`<li class="${k[2]?"tri":""}">${k[2]?note(k[2]):""}<b>${k[0]}.</b> ${k[1]}</li>`).join("");
+  const eqs = tp.eq ? `<h3>${tp.eqTitle||subj.eqTitle||"Equations to learn"}</h3><div class="eqs">${tp.eq.map(e=>`<div class="eq" style="position:relative">${e[2]?'<span class="mnote" style="left:-4.55rem" aria-hidden="true">triple only</span><span class="sr">Triple only. </span>':""}<code>${e[0]}</code><span>${e[1]}</span></div>`).join("")}</div>` : "";
+  const rps = tp.rp ? `<h3>Required practicals</h3><ul class="rps">${tp.rp.map(r=>`<li>${r[0]}${r[1]?' <span class="hand" style="font-size:1.15rem">(triple only)</span>':""}</li>`).join("")}</ul>` : "";
+  const qs = tp.q.map((q,qi)=>`<div class="check" data-q="${qi}"><p class="qq">${qi+1}. ${q[0]}</p><fieldset><legend>Answer options</legend>${q[1].map((o,j)=>`<label class="opt"><input type="radio" name="q${qi}" value="${j}"><span>${o}</span></label>`).join("")}</fieldset><p class="why" hidden aria-live="polite"></p></div>`).join("");
+  const done = isDone(s,cur.i);
+  paper.innerHTML = `
+    <ul class="contents" aria-label="${subj.name} topics">${chips}</ul>
+    <article class="lesson">
+      <h2>${tp.t}</h2>
+      <p class="meta">AQA GCSE ${subj.name} ${tp.n}. ${typeof tp.p==="string"?tp.p:"Paper "+tp.p}.${tp.tri?' <span class="hand" style="font-size:1.2rem">Whole topic is triple only.</span>':""}</p>
+      ${subj.opt&&cur.i===0?`<p class="meta" style="max-width:40rem">${subj.opt}</p>`:""}<p class="big">${tp.big}</p>
+      <h3>Key ideas</h3><ul class="ideas">${ideas}</ul>
+      ${eqs}${rps}
+      <h3>Quick check</h3>${qs}
+      <div class="nav">
+        <button class="btn" type="button" id="doneBtn" aria-pressed="${done}">${done?"Revised ✓":"Mark as revised"}</button>
+        <span class="spacer"></span>
+        <button class="btn ghost" type="button" id="prev" ${cur.i===0?"disabled":""}>Previous topic</button>
+        <button class="btn ghost" type="button" id="next" ${cur.i===subj.topics.length-1?"disabled":""}>Next topic</button>
+      </div>
+    </article>`;
+  paper.querySelectorAll(".chip").forEach(c=>c.onclick=()=>go(s, +c.dataset.i));
+  paper.querySelectorAll(".check").forEach(box=>{
+    const q = tp.q[+box.dataset.q];
+    box.addEventListener("change", e=>{
+      const pick = +e.target.value, ok = pick===q[2];
+      box.querySelectorAll(".opt").forEach((o,j)=>{
+        o.classList.toggle("is-right", j===q[2]);
+        o.classList.toggle("is-wrong", j===pick && !ok);
+      });
+      const w = box.querySelector(".why");
+      w.innerHTML = `<span class="hand" aria-hidden="true">${ok?"✓":"✗"}</span>${ok?"Correct. ":"Not quite. "}${q[3]}`;
+      w.hidden = false;
+    });
+  });
+  document.getElementById("doneBtn").onclick = ()=>{
+    const key = s+":"+tp.n;
+    if(store.done[key]) delete store.done[key]; else store.done[key] = 1;
+    save(); renderTabs(); renderPaper();
+    document.getElementById("doneBtn").focus();
+  };
+  document.getElementById("prev").onclick = ()=>go(s, cur.i-1, true);
+  document.getElementById("next").onclick = ()=>go(s, cur.i+1, true);
+}
+
+function go(s, i, scroll){
+  cur = {s, i}; store.s = s; store.i = i; save();
+  renderTabs(); renderPaper();
+  if(scroll) document.getElementById("tabs").scrollIntoView({behavior: reduceMotion?"auto":"smooth", block:"start"});
+}
+go(cur.s, cur.i, false);
+</script>
+</body>
+</html>
